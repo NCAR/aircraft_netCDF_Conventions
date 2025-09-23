@@ -24,17 +24,17 @@ Table of Contents
 
 *   [NetCDF Files and Components](#file)
 
-*   1  [Filename](#filename)
-*   2  [Data types](#types)
-*   3  [Naming conventions](#naming)
-*   4  [Dimensions](#dimensions)
-*   5  [Variables](#variables)
-*   6  [Attributes](#attributes)
+*   1  [Filename](#1-filename)
+*   2  [Data types](#2-data-types)
+*   3  [Naming conventions](#3-naming-conventions)
+*   4  [Dimensions](#4-dimensions)
+*   5  [Variables](#5-variables)
+*   6  [Attributes](#6-attributes)
 
 Appendices
 ----------
 
-*   A  [References](#references)
+*   A  [References](#A-references)
 *   B  [Size-distribution Variable Description](#size)
 
 * * *
