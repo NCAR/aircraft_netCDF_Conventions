@@ -29,13 +29,13 @@ Table of Contents
 *   3  [Naming conventions](#names)
 *   4  [Dimensions](#dims)
 *   5  [Variables](#vars)
-*   6  [Attributes](#atts)
+*   6  [Attributes](#attrs)
 
 Appendices
 ----------
 
-*   A  [References](#ref_app)
-*   B  [Size-distribution Probe Variables Description](#pms1d_app)
+*   A  [References](#refs)
+*   B  [Size-distribution Probe Variables Description](#size_dist)
 
 * * *
 
@@ -86,6 +86,7 @@ There is also an occasional need to look at data at the sample rate.
 NetCDF File Component Descriptions
 ----------------------------------
 
+# fname
 ### 1 Filename
 
 RAF uses a naming convention consisting of a project designator followed by the flight type, followed by a 2 digit flight number, followed by an indicator of sample rate ( 'h' to indicate high-rate data, low-rate data has no indicator), followed by ".nc". Prior to about 2005/2006, field projects were designated with a 3 digit number. With the adoption of ADS-3 / nidas in 2005/2006, a switch was made to upper-case project names.
@@ -98,6 +99,7 @@ RICOrf08h.nc would be high-rate data from **research** flight 8 of the RICO proj
 
 Flight types used by RAF are "ff", "tf", and "rf".
 
+#dtype
 ### 2 Data types
 
 All data are stored using type float.
@@ -106,6 +108,7 @@ All data are stored using type float.
 
 Variable, dimension and attribute names should begin with a letter and be composed of letters, digits, and underscores.
 
+# names
 #### 3.1 Variable names
 
 The **underscore** has special meaning for variable names. Anything following an underscore is considered a suffix for grouping variables from the same instrument or probe. There is no standard for suffix names, but RAF regularly uses about a dozen specific ones for describing an instrument's mounting location on the aircraft.
@@ -131,6 +134,7 @@ Dimension names we use are:
 *   bnds size is 2, this for coordinate variable bounds.
 *   Probe Serial Numbers from coordinate variables will be used (e.g. CDP016, UHSAS011, F2DS020).
 
+# dims
 ### 4 Dimensions
 
 #### 4.1 First dimension - Time
@@ -145,6 +149,7 @@ The second dimension, if present, represents the number of samples per second. T
 
 The third dimension, if present, signifies a histogram and is the length of the array. (This will be present only for array data).
 
+# vars
 ### 5 Variables
 
 http://www.cfconventions.org/.
@@ -165,6 +170,7 @@ RAF sets the Time:units to midnight prior to take-off and then the values of Tim
 
 At this time we use the _FillValue attribute.
 
+# attrs
 ### 6 Attributes
 
 #### 6.1 Global attributes
@@ -295,6 +301,7 @@ For processing purposes, variables in **our** files are organized into two sorte
 Appendices
 ----------
 
+# refs
 ### A  References
 
 [NetCDF]
@@ -319,6 +326,7 @@ Appendices
 
 [ACDD](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3), Attribute Conventions for Data Discovery
 
+# size_dist
 ### B  Size-distribution Probe Variables Description
 
 Units for all size-distributions will always be #/vol. They will never be normalized (i.e. divided by bin width or log bin width).
