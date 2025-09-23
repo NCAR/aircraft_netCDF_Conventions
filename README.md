@@ -24,7 +24,7 @@ Table of Contents
 
 *   [NetCDF Files and Components](#file)
 
-*   1  [Filename](#1-filename)
+*   1  [Filename](#1-filenames)
 *   2  [Data types](#2-data-types)
 *   3  [Naming conventions](#3-naming-conventions)
 *   4  [Dimensions](#4-dimensions)
@@ -39,7 +39,7 @@ Appendices
 
 * * *
 
-Changelog
+## Changelog
 ---------
 
 ### 2.1 released Sep 2025
@@ -59,7 +59,7 @@ For files produced prior to 2021, visit **[RAF netCDF Conventions 1.3](netCDF_1_
 
 * * *
 
-Introduction
+## Introduction
 ------------
 
 The goal is to support synchronous time series including the following properties:
@@ -83,10 +83,10 @@ There is also an occasional need to look at data at the sample rate.
 
 * * *
 
-NetCDF File Component Descriptions
+## NetCDF File Component Descriptions
 ----------------------------------
 
-### 1 Filename
+### 1 Filenames
 
 RAF uses a naming convention consisting of a project designator followed by the flight type, followed by a 2 digit flight number, followed by an indicator of sample rate ( 'h' to indicate high-rate data, low-rate data has no indicator), followed by ".nc". Prior to about 2005/2006, field projects were designated with a 3 digit number. With the adoption of ADS-3 / nidas in 2005/2006, a switch was made to upper-case project names.
 
@@ -145,7 +145,6 @@ The second dimension, if present, represents the number of samples per second. T
 
 The third dimension, if present, signifies a histogram and is the length of the array. (This will be present only for array data).
 
-# vars
 ### 5 Variables
 
 http://www.cfconventions.org/.
@@ -166,7 +165,6 @@ RAF sets the Time:units to midnight prior to take-off and then the values of Tim
 
 At this time we use the _FillValue attribute.
 
-# attrs
 ### 6 Attributes
 
 #### 6.1 Global attributes
@@ -294,10 +292,9 @@ For processing purposes, variables in **our** files are organized into two sorte
                 WIC:DataQuality = "Good" ;
                 WIC:Dependencies = "9 TASX VEWC VNSC PITCH ROLL THDG ATTACK SSLIP VSPD" ;
 
-Appendices
+## Appendices
 ----------
 
-# refs
 ### A  References
 
 [NetCDF]
@@ -322,7 +319,6 @@ Appendices
 
 [ACDD](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3), Attribute Conventions for Data Discovery
 
-# size_dist
 ### B  Size-distribution Probe Variables Description
 
 Units for all size-distributions will always be #/vol. They will never be normalized (i.e. divided by bin width or log bin width).
