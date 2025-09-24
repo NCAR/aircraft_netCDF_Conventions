@@ -170,61 +170,122 @@ At this time we use the _FillValue attribute.
 #### 6.1 Global attributes
 ```
 // global attributes:
-                :institution = "NCAR Research Aviation Facility" ;
+                :program = "NSF NCAR" ;
+                :institution = "National Center for Atmospheric Research" ;
                 :Address = "P.O. Box 3000, Boulder, CO 80307-3000" ;
                 :Phone = "(303) 497-1030" ;
-                :creator_url = "http://www.eol.ucar.edu" ;
-                :creator_email = "codiac at ucar.edu" ;
-                :RepositoryURL = "https://github.com/NCAR/nimbus" ;
-                :RepositoryBranch = "master" ;
-                :RepositoryRevision = "v5.0-80M" ;
-                :RepositoryDate = "Sat Apr 24 12:26:46 2021 -0600" ;
-                :RepositoryHASH = "8fd13287c0ce7a4cdbc387e355e3fa306fbb3f6b" ;
-                :RepositoryStatus = "M src/amlib/std/fssp.c" ;
-                :ProjectDirectoryRepoURL = "https://github.com/ncar/aircraft_projects" ;
-                :ProjectDirectoryRevision = "da43da3aeb11dcc9abde6a10bf00cdb707a6763" ;
-                :Conventions = "NCAR-RAF/nimbus" ;
-                :ConventionsURL = "http://www.eol.ucar.edu/raf/Software/netCDF.html" ;
-                :Metadata_Conventions = "Unidata Dataset Discovery v1.0" ;
-                :ConventionsVersion = "2.0" ;
-                :standard_name_vocabulary = "CF-1.0" ;
-                :NIDASrevision = "v1.2-1469" ;
-                :WARNING = "This file contains PRELIMINARY DATA that are NOT to be used for critical analysis." ;
-                :date_created = "2021-06-06T23:41:31 +0000" ;
-                :ProjectName = "SPICULE" ;
-                :project = "SPICULE" ;
-                :Platform = "N677F" ;
-                :FlightNumber = "rf04" ;
-                :FlightDate = "06/05/2021" ;
-                :TimeInterval = "11:54:29-22:09:16" ;
+                :source = "airborne observations" ;
+                :platform = "N130AR" ;
+                :platform_type = "aircraft" ;
+                :project = "CAESAR" ;
+                :creator_name = "NCAR EOL - Research Aviation Facility" ;
+                :creator_email = "raf-pm at ucar.edu" ;
+                :creator_url = "https://www.eol.ucar.edu/who-we-are/eol-organization/research-aviation-facility-raf" ;
+                :creator_type = "group" ;
+                :creator_group = "NSF NCAR C130 Team" ;
+                :publisher_name = "UCAR NCAR - Earth Observing Laboratory" ;
+                :publisher_url = "https://www.eol.ucar.edu/data-software/eol-field-data-archive" ;
+                :publisher_email = "datahelp at eol.ucar.edu" ;
+                :publisher_type = "group" ;
+                :DOI = "https://doi.org/10.26023/44NW-3RPN-ZF0B" ;
+                :naming_authority = "org.doi" ;
+                :id = "10.26023/44NW-3RPN-ZF0B" ;
+                :Conventions = "NCAR-RAF/nimbus-2.0,ACDD-1.3" ;
+                :ConventionsURL = "https://www.eol.ucar.edu/raf/Software/netCDF.html" ;
+                :standard_name_vocabulary = "CF-1.11" ;
+                :ProcessorRepositoryURL = "https://github.com/NCAR/nimbus" ;
+                :ProcessorRepositoryBranch = "master" ;
+                :ProcessorRepositoryRevision = "v5.0-282" ;
+                :ProcessorRepositoryDate = "Tue Feb 4 14:29:22 2025 -0700" ;
+                :ProcessorRepositoryHASH = "b8fbb30ae4e66cc67f05fc036e0e325808da26d4" ;
+                :ProjectDirectoryRepoURL = "git@github.com:NCAR/aircraft_projects.git" ;
+                :ProjectDirectoryRevision = "894cf75dc2d4976e715de059206cccae1283398" ;
+                :NIDASrevision = "v1.2.4" ;
+                :SizeDistributionLegacyZeroBin = "no" ;
+                :date_created = "2025-02-11T22:19:21 +0000" ;
+                :FlightNumber = "rf01" ;
+                :FlightDate = "02/28/2024" ;
                 :InterpolationMethod = "Linear" ;
+                :WARNING = "This file contains PRELIMINARY DATA that are NOT to be used for critical analysis." ;
                 :latitude_coordinate = "LATC" ;
                 :longitude_coordinate = "LONC" ;
                 :zaxis_coordinate = "GGALT" ;
                 :time_coordinate = "Time" ;
-                :geospatial_lat_min = 33.74531f ;
-                :geospatial_lat_max = 40.17661f ;
-                :geospatial_lon_min = -105.1467f ;
-                :geospatial_lon_max = -96.44314f ;
-                :geospatial_vertical_min = 304.9131f ;
-                :geospatial_vertical_max = 13012.9f ;
+                :geospatial_lat_min = 67.73269f ;
+                :geospatial_lat_max = 71.56526f ;
+                :geospatial_lon_min = -17.13059f ;
+                :geospatial_lon_max = 20.60835f ;
+                :geospatial_vertical_min = 169.6806f ;
+                :geospatial_vertical_max = 5996.425f ;
                 :geospatial_vertical_positive = "up" ;
                 :geospatial_vertical_units = "m" ;
-                :wind_field = "WSC WDC WIC" ;
-                :landmarks = "39.9088 -105.117 BJC, 40.536 -104.8206 radar" ;
+                :wind_field = "WSC WDC WIX" ;
+                :landmarks = "39.9088 -105.117 jeffco, 67.85572 20.22513 kiruna" ;
                 :Categories = "Aerosol,Atmos. State,Chemistry,CloudAndPrecip,Housekeeping,NavAttitude,NavPosition,NavVelocity,Non-Standard,Radiation,Thermodynamic,Uncorrected Raw,Wind" ;
-                :time_coverage_start = "2021-06-05T11:54:29 +0000" ;
-                :time_coverage_end = "2021-06-05T22:09:16 +0000" ;
+                :time_coverage_start = "2024-02-28T11:39:00 +0000" ;
+                :time_coverage_end = "2024-02-28T18:36:44 +0000" ;
 ```
-ConventionVersion is the RAF nimbus conventions versions number.
 
-RepositoryStatus and ProjectDirectoryStatus, if present, indicate files that were used but not commited into github. Results may not be reproducable.
+Global Attributes:
 
-*_coordinate is required starting with version 1.3. These are the aircrafts "best" position variables.  
+| Attribute Name | Category | Description |
+|-----|-----|-----|
+|program | data discovery - source | |
+|institution | data discovery - source | |
+|Address | data discovery - source | | 
+|Phone | data discovery - source | |
+|source | data discovery - source | |
+|creator_name | data discovery - source | |
+|creator_email | data discovery - source | |
+|creator_url | data discovery - source | |
+|creator_type | data discovery - source | |
+|creator_group | data discovery - source | |
+|publisher_name | data discovery - source | |
+|publisher_url | data discovery - source | |
+|publisher_email | data discovery - source | |
+|publisher_type | data discovery - source | |
+|DOI | data discovery - id | |
+|naming_authority | data discovery - id | | 
+|id | data discovery - id | | 
+|Conventions | data discovery - file format | |
+|ConventionsURL | data discovery - file format | |
+|standard_name_vocabulary | data discovery - file format | |
+|ProcessorRepositoryURL | provenance | |
+|ProcessorRepositoryBranch | provenance | |
+|ProcessorRepositoryRevision | provenance | |
+|ProcessorRepositoryDate | provenance | |
+|ProcessorRepositoryHASH | provenance | |
+|ProcessorRepositoryDirt | provenance | Lists processor source code files that were modified and not committed. |
+|ProjectDirectoryRepoURL | provenance | |
+|ProjectDirectoryRevision | provenance | |
+|ProjectDirectoryDirt | provenance | Lists files that are modified and not committed in the repository. |
+|NIDASrevision | provenance | |
+|SizeDistributionLegacyZeroBin | provenance | |
+|InterpolationMethod | provenance | |
+|date_created | data discovery - about | |
+|platform | data discovery - about | |
+|platform_type | data discovery - about | |
+|project | data discovery - about | |
+|FlightNumber | data discovery - about | |
+|FlightDate | data discovery - about | |
+|time_coverage_start | data discovery - about | |
+|time_coverage_end | data discovery - about | |
+|latitude_coordinate | data discovery - about | platform best latitude |
+|longitude_coordinate | data discovery - about | platform best longitude |
+|zaxis_coordinate | data discovery - about | platform best altitude |
+|time_coordinate | data discovery - about | Name of the time variable. |
+|geospatial_lat_min | data discovery - about | |
+|geospatial_lat_max | data discovery - about | |
+|geospatial_lon_min | data discovery - about | |
+|geospatial_lon_max | data discovery - about | |
+|geospatial_vertical_min | data discovery - about | |
+|geospatial_vertical_max | data discovery - about | |
+|geospatial_vertical_positive | data discovery - about | |
+|geospatial_vertical_units | data discovery - about | |
+|wind_field | data discovery - about | List of three dimensional wind variables.  wind_speed wind_direction vertical_wind |
+|landmarks | ancillary information | Comma separated list of land marks.  lat lon label |
+|Categories | ancillary information | Most variables have a Category attribute, this is the list of all possible categories. |
 
-wind_field lists the variables comprising the 3D wind field. Wind Speed, Wind Direction, and Vertical Wind Speed respectively.
-
-landmarks is a comma separated list of relevant locations on a map. Each landmark comprises three fields, "latitude longitude label".
 
 #### 6.2 Variable attributes
 
