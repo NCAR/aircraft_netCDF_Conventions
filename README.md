@@ -226,7 +226,7 @@ At this time we use the _FillValue attribute.
                 :time_coverage_end = "2024-02-28T18:36:44 +0000" ;
 ```
 
-Global Attributes:
+Global attributes description.  Blank descriptions can be found at the [ESIP ACDD](https://wiki.esipfed.org/Data_Discovery_(ACDD)) web page.
 
 | Attribute Name | Category | Description |
 |-----|-----|-----|
@@ -244,22 +244,22 @@ Global Attributes:
 |publisher_url | data discovery - source | |
 |publisher_email | data discovery - source | |
 |publisher_type | data discovery - source | |
-|DOI | data discovery - id | |
+|DOI | data discovery - id | Complete DOI name, consisting of the components below (naming authority and id). |
 |naming_authority | data discovery - id | | 
 |id | data discovery - id | | 
-|Conventions | data discovery - file format | |
+|Conventions | data discovery - file format | List of conventions used. |
 |ConventionsURL | data discovery - file format | |
 |standard_name_vocabulary | data discovery - file format | |
-|ProcessorRepositoryURL | provenance | |
+|ProcessorRepositoryURL | provenance | Processor code repository, derived calculations. |
 |ProcessorRepositoryBranch | provenance | |
 |ProcessorRepositoryRevision | provenance | |
 |ProcessorRepositoryDate | provenance | |
 |ProcessorRepositoryHASH | provenance | |
 |ProcessorRepositoryDirt | provenance | Lists processor source code files that were modified and not committed. |
-|ProjectDirectoryRepoURL | provenance | |
+|ProjectDirectoryRepoURL | provenance | Project configuration files repository. |
 |ProjectDirectoryRevision | provenance | |
 |ProjectDirectoryDirt | provenance | Lists files that are modified and not committed in the repository. |
-|NIDASrevision | provenance | |
+|NIDASrevision | provenance | Processor code repository, raw data decoding processing. |
 |SizeDistributionLegacyZeroBin | provenance | |
 |InterpolationMethod | provenance | |
 |date_created | data discovery - about | |
@@ -270,10 +270,10 @@ Global Attributes:
 |FlightDate | data discovery - about | |
 |time_coverage_start | data discovery - about | |
 |time_coverage_end | data discovery - about | |
-|latitude_coordinate | data discovery - about | platform best latitude |
-|longitude_coordinate | data discovery - about | platform best longitude |
-|zaxis_coordinate | data discovery - about | platform best altitude |
-|time_coordinate | data discovery - about | Name of the time variable. |
+|latitude_coordinate | data discovery - about | Variable name of platform best latitude |
+|longitude_coordinate | data discovery - about | Variable name of platform best longitude |
+|zaxis_coordinate | data discovery - about | Variable name of platform best altitude |
+|time_coordinate | data discovery - about | Variable name of the time variable. |
 |geospatial_lat_min | data discovery - about | |
 |geospatial_lat_max | data discovery - about | |
 |geospatial_lon_min | data discovery - about | |
