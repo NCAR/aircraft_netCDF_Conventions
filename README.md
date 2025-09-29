@@ -108,7 +108,7 @@ Variable, dimension and attribute names should begin with a letter and be compos
 
 #### 3.1 Variable names
 
-The **underscore** has special meaning for variable names. Anything following an underscore is considered a suffix for grouping variables from the same instrument or probe. There is no standard for suffix names, but RAF regularly uses about a dozen specific ones for describing an instrument's mounting location on the aircraft.
+The **underscore** has special meaning for variable names. Anything following an underscore is considered a suffix for grouping variables from the same instrument or probe. There is no standard for suffix names, but RAF regularly uses about a dozen specific ones for describing an instrument's mounting location on the aircraft.  This allows for multiple identical probes, each must have a unique sufffix.
 
 e.g.,  
 ```
