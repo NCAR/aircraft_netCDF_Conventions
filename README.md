@@ -100,7 +100,7 @@ Flight types used by RAF are "ff", "tf", and "rf".
 
 ### 2 Data types
 
-All data are stored using type float.
+All our data are stored using single precision float.  This is not a requirement.  The modern netCDF APIs have functions that will return the data in whatever format you ask, regardless of how it is stored in the file.
 
 ### 3 Naming conventions
 
