@@ -295,17 +295,23 @@ Every variable will have either SampledRate or Dependencies, this is how you can
 
 In addition we provide some other attributes; not all are used for every variable:
 
-standard_name we have adopted the CF [CF conventions](http://cfconventions.org/latest.html) section 3.3 use of standard_name where applicable.
+|Attribute name| | Applies to | Description |
+|-----|-----|-----|-----|
+| _FillValue | highly recommended | all | This acts as the missing value flag. |
+| units | required | all | Self explanitory. |
+| long_name | required | all | Description of teh variable. |
+| standard_name | optional | all | We use CF [CF conventions](http://cfconventions.org/latest.html) section 3.3 use of standard_name where applicable. |
+| SampledRate | optional | raw | The rdata date (sps) at which the variable was sampled onboard the aircraft. All variables recorded by the data acquistion system will have this attribute. All derived variables will not.|
+| TimeLag | optional | raw | Present if a time lag is applied to the variable.  Negative to correct for data lag or slow response. milliseconds |
+| DespikeSlope | optional | raw | If despiking is being applied, this is the slope between two consecutive sampled values.  i.e. what is a valid a max response to changing conditions. |
+| DataQuality| optional | all | attempts to inform the user of the quality of these data. Some values are Bad, Preliminary and Good. Data distributed in the field will always be set to Preliminary. |
+| Category | optional | all | See CategoryList in the global_attributes.  Since a file can contain hundreds of variables with not very descriptive names, this is provided to help create sub-lists of variables. |
+| CalibrationCoefficients | optional | raw | These are the values used to produce engineering units from a measurement's DC voltage. It is used by the analog/digital group. **These values have already been applied!** They are present for documentation. |
+| Dependencies | optional | derived | These are the input variables that were used to produce this derived (calculated) variable. Like CalibrationCoefficients, these are present for documentation. |
+| actual_range | recommended | all | This contains the min/max for this variable in this file. |
+| valid_range | | all | We have this for some variables.  Contains the valid range of the variable. |
 
-SampledRate is the rate (sps) at which the variable was sampled onboard the aircraft. This does not apply to derived variables. All variables recorded by the data acquistion system will have this attribute. All derived variables will not.
 
-DataQuality attempts to inform the user of the quality of these data. Some values are Bad, Preliminary and Good. Data distributed in the field will always be set to Preliminary.
-
-Category Since a file can contain hundreds of variables with not very descriptive names, this is provided to help create sub-lists of variables. Comma separated list.
-
-CalibrationCoefficients are the values used to produce engineering units from a measurement's DC voltage. It is used by the analog/digital group. **These values have already been applied!** They are present for documentation.
-
-Dependencies are the input variables that were used to produce this derived (calculated) variable. Like CalibrationCoefficients , these are present for documentation. All derived variables will have this attribute.
 
 For processing purposes, variables in **our** files are organized into two sorted lists. The first sorted list consists of raw sampled variables. These only have calibration coefficients applied to them. The second group consists of derived variables. I have included one example from each of the 3 groups (which also show different dimension schemes):
 
@@ -316,7 +322,7 @@ For processing purposes, variables in **our** files are organized into two sorte
                 PITCH:standard_name = "platform_pitch_angle" ;
                 PITCH:valid_range = -180.f, 180.f ;
                 PITCH:actual_range = -3.31724 15.88532f ;
-                PITCH:Category = "Analog" ;
+                PITCH:Category = "NavAttitude" ;
                 PITCH:SampledRate = 50 ;
                 PITCH:TimeLag = -180 ;
                 PITCH:TimeLagUnits = "milliseconds" ;
@@ -328,7 +334,7 @@ For processing purposes, variables in **our** files are organized into two sorte
                 CCDP_LWOO:units = "#/cm3" ;
                 CCDP_LWOO:long_name = "CDP Concentration (per cell)" ;
                 CCDP_LWOO:actual_range = 0.f, 538.7375f ;
-                CCDP_LWOO:Category = "PMS Probe" ;
+                CCDP_LWOO:Category = "CloudAndPrecip" ;
                 CCDP_LWOO:SerialNumber = "CDP016" ;
                 CCDP_LWOO:DataQuality = "Preliminary" ;
                 CCDP_LWOO:Dependencies = "2 ACDP_LWOO TASX" ;
@@ -425,7 +431,7 @@ e.g. The bin limits for CS100[n] are CellSizes[n] and CellSizes[n+1], lower and 
                 ACDP_LWOO:units = "count" ;
                 ACDP_LWOO:long_name = "CDP Raw Accumulation (per cell)" ;
                 ACDP_LWOO:actual_range = 0.f, 8328.f ;
-                ACDP_LWOO:Category = "PMS Probe" ;
+                ACDP_LWOO:Category = "CloudAndPrecip" ;
                 ACDP_LWOO:SerialNumber = "CDP016" ;
                 ACDP_LWOO:SampledRate = 10 ;
                 ACDP_LWOO:DataQuality = "Preliminary" ;
@@ -435,7 +441,7 @@ e.g. The bin limits for CS100[n] are CellSizes[n] and CellSizes[n+1], lower and 
                 CCDP_LWOO:units = "#/cm3" ;
                 CCDP_LWOO:long_name = "CDP Concentration (per cell)" ;
                 CCDP_LWOO:actual_range = 0.f, 273.5868f ;
-                CCDP_LWOO:Category = "PMS Probe" ;
+                CCDP_LWOO:Category = "CloudAndPrecip" ;
                 CCDP_LWOO:SerialNumber = "CDP016" ;
                 CCDP_LWOO:DataQuality = "Preliminary" ;
                 CCDP_LWOO:Dependencies = "2 ACDP_LWOO TASX" ;
@@ -455,7 +461,7 @@ e.g. The bin limits for CS100[n] are CellSizes[n] and CellSizes[n+1], lower and 
                 CONCD_LWOO:units = "#/cm3" ;
                 CONCD_LWOO:long_name = "CDP Concentration (all cells)" ;
                 CONCD_LWOO:actual_range = 0.f, 963.0727f ;
-                CONCD_LWOO:Category = "PMS Probe" ;
+                CONCD_LWOO:Category = "CloudAndPrecip" ;
                 CONCD_LWOO:SerialNumber = "CDP016" ;
                 CONCD_LWOO:DataQuality = "Preliminary" ;
                 CONCD_LWOO:Dependencies = "1 CCDP_LWOO" ;
