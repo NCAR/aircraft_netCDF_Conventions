@@ -42,9 +42,10 @@ Appendices
 ## Changelog
 ---------
 
-### 2.1 released Sep 2025
+### 2.1 released Jan 2025
 
 *   Coordinate variables for size-distributions
+*   Updated global attributes for data discovery and provenance.
 
 ### 2.0 released Jun 2021
 
@@ -329,7 +330,7 @@ For processing purposes, variables in **our** files are organized into two sorte
                 PITCH:DataQuality = "Preliminary" ;
                 PITCH:CalibrationCoefficients = 0.26f, 1.f ;
 
-        float CCDP_LWOO(Time, sps1, Vector30) ;
+        float CCDP_LWOO(Time, sps1, CDP016) ;
                 CCDP_LWOO:_FillValue = -32767.f ;
                 CCDP_LWOO:units = "#/cm3" ;
                 CCDP_LWOO:long_name = "CDP Concentration (per cell)" ;
@@ -424,7 +425,7 @@ SPEC probes are only processed through our OAP post-processing tool. This will p
 
 Cell sizes (aka bin edges) are stored as an attribute of the size-distribution array. They are **lower bin limits**. These are diameters. In the example below, there are 31 cell sizes to go with the 30 used values of the size-distribution. The first cell size is the lower bin limit for the first bin of data. Also note the attributes **FirstBin** and **LastBin**, these should be used to determine which bins are considered valid, both are inclusive.
 
-e.g. The bin limits for CS100[n] are CellSizes[n] and CellSizes[n+1], lower and upper respectivily.
+e.g. The bin limits for CCDP[n] are CellSizes[n] and CellSizes[n+1], lower and upper respectivily.
 
         float ACDP_LWOO(Time, sps1, Vector30) ;
                 ACDP_LWOO:_FillValue = -32767.f ;
