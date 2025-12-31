@@ -85,7 +85,7 @@ There is also an occasional need to look at data at the sample rate.
 
 - [File Structure]({% link file-structure.md %}) - Filenames, data types, naming conventions, dimensions, and variables
 - [Attributes]({% link attributes.md %}) - Global and variable attributes specifications
-- [Size-Distribution Probes]({% link size-distributions.md %}) - Histogram variable descriptions (Appendix B)
+- [Size-Distribution Probes]({% link size_distributions.md %}) - Histogram variable descriptions (Appendix B)
 - [References]({% link references.md %}) - Links to NetCDF, CF Conventions, ACDD, and UDUNITS (Appendix A)
 - [Changelog]({% link changelog.md %}) - Complete version history
 
