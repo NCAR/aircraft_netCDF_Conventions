@@ -31,6 +31,10 @@ aux_links_new_tab: true
 back_to_top: true
 back_to_top_text: "Back to top"
 
+# Enable TOC on the right side for single-page documentation
+# This will display a table of contents based on page headings
+nav_external_links: []
+
 # Footer
 footer_content: >-
   &copy; 2025 NSF NCAR Research Aviation Facility.
