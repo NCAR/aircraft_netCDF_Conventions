@@ -7,18 +7,24 @@ permalink: /
 ---
 
 # NCAR-RAF netCDF Conventions
+{: .no_toc }
 
 ### Version 2.1
+{: .no_toc }
 
 * * *
 
 #### National Center for Atmospheric Research
+{: .no_toc }
 
 #### Research Aviation Facility
+{: .no_toc }
 
 #### NOAA AOC
+{: .no_toc }
 
 #### University of Wyoming (King Air)
+{: .no_toc }
 
 * * *
 
@@ -401,7 +407,7 @@ Each PMS probe has two histograms stored in the netCDF file. First is the raw co
 |F300|32|AF300_xxx|CF300_xxx|S300|30|AS300_xxx|CS300_xxx|
 |||||CDP|30|ACDP_xxx|CCDP_xxx|
 |||||UHSAS|99|AUHSAS_xxx|CUHSAS_xxx|
-|260X|64|A260X_xxx|C260X_xxx||||
+|260X|64|A260X_xxx|C260X_xxx|||||
 |2D-C (entire-in algo)|32|A1DC_xxx|C1DC_xxx|Fast2DC|64|A1DC_xxx|C1DC_xxx|
 |2D-C (center-in algo)|64|A2DC_xxx|C2DC_xxx|Fast2DC|128|A2DC_xxx|C2DC_xxx|
 

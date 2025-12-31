@@ -18,6 +18,9 @@ search:
   preview_words_after: 10
   button: false
 
+# Enable collapsible navigation in sidebar
+nav_fold: true
+
 # Navigation
 aux_links:
   "View on GitHub":
