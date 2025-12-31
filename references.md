@@ -1,28 +1,33 @@
 ---
 layout: default
 title: References
-permalink: /references/
+nav_order: 5
+description: "References to NetCDF, CF Conventions, ACDD, and UDUNITS specifications"
 ---
 
-### A  References
+# References
+{: .no_toc }
+
+## Appendix A
+{: .no_toc }
 
 [NetCDF]
 
 [NetCDF Software Package](http://www.unidata.ucar.edu/software/netcdf/), from the UNIDATA Program Center of the University Corporation for Atmospheric Research.
 
-  
+
 
 [UDUNITS]
 
 [UDUNITS Software Package](http://www.unidata.ucar.edu/software/udunits/), from the UNIDATA Program Center of the University Corporation for Atmospheric Research.
 
-  
+
 
 [CF Conventions]
 
 [CF Conventions](http://www.cfconventions.org/conventions.html), Climate Forcast data and meta-data conventions.
 
-  
+
 
 [ACDD]
 

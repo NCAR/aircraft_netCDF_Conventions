@@ -1,0 +1,150 @@
+---
+---
+
+/* NCAR-RAF Brand Colors */
+:root {
+  --ncar-blue: #3860B0;
+  --ncar-navy: #386090;
+}
+
+/* Site Title */
+.site-title {
+  color: var(--ncar-blue) !important;
+}
+
+.site-title:hover {
+  color: var(--ncar-navy) !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ncar-blue) !important;
+}
+
+/* Links */
+a {
+  color: navy;
+}
+
+a:visited {
+  color: var(--ncar-navy);
+}
+
+/* Version Badge */
+.version-badge {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  background: var(--ncar-blue);
+  color: white;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-left: 0.5em;
+}
+
+/* Code blocks - CDL syntax */
+code.language-cdl,
+pre.cdl {
+  background: #f6f8fa;
+  border-left: 3px solid brown;
+  color: brown;
+}
+
+/* Inline code for attribute names */
+code {
+  color: blue;
+  font-weight: normal;
+}
+
+/* Tables - General Styling */
+table {
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+table thead {
+  background-color: var(--ncar-blue);
+  color: white;
+}
+
+table thead th {
+  padding: 0.75em;
+  text-align: left;
+  font-weight: 600;
+}
+
+table tbody td {
+  padding: 0.75em;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+table tbody tr:hover {
+  background-color: #f6f8fa;
+}
+
+/* Responsive tables */
+@media (max-width: 768px) {
+  table {
+    font-size: 0.8em;
+  }
+
+  table thead th,
+  table tbody td {
+    padding: 0.5em 0.25em;
+  }
+}
+
+/* Large tables - horizontal scroll on mobile */
+.table-wrapper {
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+/* Probe tables specific styling */
+table.probe-table {
+  font-size: 0.85em;
+}
+
+@media (max-width: 768px) {
+  table.probe-table {
+    font-size: 0.75em;
+  }
+}
+
+/* Example blocks */
+div.example {
+  margin: 2em 3em;
+  padding: 1em;
+  background: #f6f8fa;
+  border-left: 4px solid var(--ncar-blue);
+}
+
+/* Callout boxes */
+.note, .warning, .important {
+  padding: 1em;
+  margin: 1em 0;
+  border-left: 4px solid;
+  background-color: #f6f8fa;
+}
+
+.note {
+  border-left-color: #0366d6;
+}
+
+.warning {
+  border-left-color: #f9c513;
+  background-color: #fffbdd;
+}
+
+.important {
+  border-left-color: #d73a49;
+  background-color: #ffeef0;
+}
+
+/* Footer customization */
+.site-footer {
+  color: #666;
+  font-size: 0.9em;
+}

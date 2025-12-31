@@ -1,9 +1,24 @@
 ---
 layout: default
-title: Size-distribution Probe Variables Description
+title: Size-Distribution Probes
+nav_order: 4
+description: "Histogram variable descriptions for particle size distribution probes"
 permalink: /size-distribution/
 ---
-## Size-distribution Probe Variables Description
+
+# Size-Distribution Probe Variables Description
+{: .no_toc }
+
+## Appendix B
+{: .no_toc }
+
+## Table of Contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+* * *
 Units for all size-distributions will always be #/vol. They will never be normalized (i.e. divided by bin width or log bin width).
 
 #### B.1 Variable names
