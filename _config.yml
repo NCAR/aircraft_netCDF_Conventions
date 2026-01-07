@@ -7,8 +7,8 @@ baseurl: "/aircraft_netCDF_Conventions"
 url: "https://ncar.github.io"
 
 # Theme
-theme: just-the-docs
-# remote_theme: just-the-docs/just-the-docs@v0.10.0
+# theme: just-the-docs #Use for local testing
+remote_theme: just-the-docs/just-the-docs@v0.10.0
 
 # Just the Docs configuration
 search_enabled: true
