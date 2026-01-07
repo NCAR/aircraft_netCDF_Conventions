@@ -20,14 +20,124 @@
 h1, h2, h3, h4, h5, h6 {
   color: var(--ncar-blue) !important;
 }
+h4 {
+  font-size: 1rem !important;
+}
+/* ============================================
+   AUTOMATIC SECTION NUMBERING
+   ============================================ */
+
+/* Initialize counters at the main content level */
+.main-content ul > li::before {
+    position: relative !important;
+}
+
+.main-content {
+  counter-reset: h2-counter;
+}
+
+/* H2 counter - main sections */
+.main-content h2 {
+  counter-reset: h3-counter;
+}
+
+.main-content h2::before {
+  counter-increment: h2-counter;
+  content: counter(h2-counter) ". ";
+  margin-right: 0.5em;
+}
+
+/* H3 counter - subsections */
+.main-content h3 {
+  counter-reset: h4-counter;
+}
+
+.main-content h3::before {
+  counter-increment: h3-counter;
+  content: counter(h2-counter) "." counter(h3-counter) " ";
+  margin-right: 0.5em;
+}
+
+/* H4 counter - sub-subsections */
+.main-content h4::before {
+  counter-increment: h4-counter;
+  content: counter(h2-counter) "." counter(h3-counter) "." counter(h4-counter) " ";
+  margin-right: 0.5em;
+}
+
+/* Exclude headings before Introduction from numbering */
+.main-content h2:first-of-type::before,
+.main-content h1 + h3::before,
+.main-content h1 + * + h3::before {
+  content: none;
+  counter-increment: none;
+}
+
+/* Exclude specific sections by matching text content */
+/* Note: This uses a more specific approach for headings with .no_toc class */
+h2.no_toc::before,
+h3.no_toc::before,
+h4.no_toc::before {
+  content: none !important;
+  counter-increment: none !important;
+}
+
+/* Hide anchor links for excluded headings */
+h1.no-anchor a.anchor-link,
+h2.no-anchor a.anchor-link,
+h3.no-anchor a.anchor-link,
+h4.no-anchor a.anchor-link {
+  display: none !important;
+}
+
+/* Special styling for Appendices - use alphabetic counters */
+/* Reset to alphabetic counter for Appendix A */
+#references {
+  counter-reset: appendix-counter 0;
+}
+
+#references::before {
+  counter-increment: appendix-counter;
+  content: "A. " !important;
+}
+
+#size-distribution-probes {
+  counter-increment: appendix-counter;
+}
+
+#size-distribution-probes::before {
+  content: "B. " !important;
+}
+
+/* Appendix subsections (B.1, B.2, etc.) */
+#size-distribution-probes ~ h3 {
+  counter-reset: appendix-sub-counter;
+}
+
+#size-distribution-probes ~ h3::before {
+  counter-increment: appendix-sub-counter;
+  content: "B." counter(appendix-sub-counter) " " !important;
+}
+
+/* Override numbering for Contact section */
+#contact::before {
+  content: none !important;
+  counter-increment: none !important;
+}
 
 /* Links */
 a {
-  color: navy;
+  color: var(--ncar-navy);
 }
 
 a:visited {
-  color: var(--ncar-navy);
+  color: #7c91ba;
+}
+
+a.paginate_button.current {
+  background: #f6f8fa;
+  border-color: var(--ncar-blue);
+  color: white !important;
 }
 
 /* Version Badge */
@@ -62,26 +172,58 @@ table {
   margin: 1.5em 0;
   border-collapse: collapse;
   font-size: 0.9em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 table thead {
-  background-color: var(--ncar-blue);
-  color: white;
+  background-color: var(--ncar-blue) !important;
+  color: white !important;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 table thead th {
-  padding: 0.75em;
-  text-align: left;
-  font-weight: 600;
+  padding: 0.75em !important;
+  text-align: left !important;
+  font-weight: 600 !important;
+  border-bottom: 2px solid var(--ncar-navy) !important;
+  background-color: var(--ncar-blue) !important;
+  color: white !important;
+}
+
+table thead th:first-child {
+  border-top-left-radius: 4px;
 }
 
 table tbody td {
   padding: 0.75em;
   border-bottom: 1px solid #e1e4e8;
+  vertical-align: top;
+}
+
+/* Zebra striping for better readability */
+table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
 table tbody tr:hover {
+  background-color: #f0f5fa;
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:last-of-type th, tbody tr:last-of-type td {
+  border-bottom: none;
+}
+
+/* Code in tables (for attribute names) */
+table code {
   background-color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  color: #d73a49;
+  font-weight: 500;
 }
 
 /* Responsive tables */
@@ -94,22 +236,106 @@ table tbody tr:hover {
   table tbody td {
     padding: 0.5em 0.25em;
   }
+
+  /* Disable sticky headers on mobile for better scroll */
+  table thead {
+    position: static;
+  }
 }
 
-/* Large tables - horizontal scroll on mobile */
+/* Table wrapper for horizontal scroll on wide tables */
 .table-wrapper {
   overflow-x: auto;
-  margin: 1em 0;
+  margin: 0 0;
+  border-radius: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
 }
 
-/* Probe tables specific styling */
-table.probe-table {
+.table-wrapper table {
+  margin: 0;
+  box-shadow: none;
+}
+
+/* Global Attributes table - special styling for large table */
+#global-attributes-table {
+  font-size: 0.875em;
+}
+
+#global-attributes-table td:first-child {
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+#global-attributes-table td:nth-child(2) {
   font-size: 0.85em;
+  color: #666;
+}
+
+/* Variable Attributes table - with requirement levels */
+#variable-attributes-table td:first-child {
+  font-weight: 600;
+}
+
+/* Requirement badges in tables */
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  border-radius: 3px;
+  font-size: 0.75em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-required {
+  background-color: #d73a49;
+  color: white;
+}
+
+.badge-recommended {
+  background-color: #0366d6;
+  color: white;
+}
+
+.badge-optional {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* Probe tables - very wide, need horizontal scroll */
+.probe-table {
+  font-size: 0.85em;
+  min-width: 800px;
+}
+
+.probe-table th,
+.probe-table td {
+  white-space: nowrap;
+  padding: 0.6em 0.8em;
+}
+
+.probe-table th {
+  font-size: 0.9em;
+}
+
+@media (max-width: 1024px) {
+  .probe-table {
+    font-size: 0.75em;
+  }
 }
 
 @media (max-width: 768px) {
-  table.probe-table {
-    font-size: 0.75em;
+  .probe-table {
+    font-size: 0.7em;
+  }
+
+  .probe-table th,
+  .probe-table td {
+    padding: 0.4em 0.5em;
   }
 }
 
@@ -149,89 +375,266 @@ div.example {
   font-size: 0.9em;
 }
 
-/* Fix sidebar title height to show collapse button */
-.site-nav {
-  padding-top: 1rem;
+/* Hide sidebar completely */
+.side-bar {
+  display: none !important;
 }
 
-.site-title {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+/* Make main content full width without sidebar */
+@media (min-width: 50rem) {
+  .main {
+    margin-left: 0 !important;
+    max-width: none !important;
+  }
 }
 
-/* Custom TOC navigation styling */
-.nav-category {
-  padding: 0.5rem 0;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  color: #5c5962;
-  border-bottom: 1px solid #eeebee;
-  margin-bottom: 0.5rem;
-}
-
-/* Style the auto-generated TOC from allejo/jekyll-toc */
-.toc-list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.toc-list li {
-  position: relative;
-  margin: 0;
-  padding: 0;
-}
-
-.toc-list > li {
-  margin-bottom: 0.25rem;
-}
-
-.toc-list a {
-  display: block;
-  padding: 0.375rem 0;
-  color: #5c5962;
+/* Persistent back-to-top button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--ncar-blue);
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
-  font-size: 0.875rem;
-  line-height: 1.4;
-  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 100;
+  font-size: 1.5rem;
+  line-height: 1;
 }
 
-.toc-list a:hover {
-  color: var(--ncar-blue);
-  background-color: #f6f8fa;
-  padding-left: 0.5rem;
+.back-to-top:hover {
+  background: var(--ncar-navy);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+  color: white;
 }
 
-/* Nested list styling */
-.toc-list ul {
-  padding-left: 1rem;
-  margin: 0.25rem 0;
-  list-style: none;
+.back-to-top:focus {
+  outline: 2px solid var(--ncar-blue);
+  outline-offset: 2px;
 }
 
-.toc-list ul li {
-  margin: 0;
-}
-
-.toc-list ul a {
-  font-size: 0.8125rem;
-  padding: 0.25rem 0;
-}
-
-/* Third level (subsections) */
-.toc-list ul ul a {
-  font-size: 0.75rem;
-  color: #767676;
-  padding-left: 0.5rem;
-}
-
-.toc-list ul ul a:hover {
-  color: var(--ncar-blue);
-  padding-left: 1rem;
+/* Center main content for better readability */
+@media (min-width: 50rem) {
+  .main-content-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
 }
 
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
+}
+
+/* ============================================
+   TABLE OF CONTENTS NUMBERING
+   ============================================ */
+
+/* Make TOC use decimal numbering to match body content */
+#markdown-toc {
+  counter-reset: toc-h2;
+  list-style: none;
+  padding-left: 0;
+}
+
+#markdown-toc > li {
+  counter-increment: toc-h2;
+  list-style: none;
+}
+
+#markdown-toc > li::before {
+  content: counter(toc-h2) ". ";
+  font-weight: 600;
+}
+
+#markdown-toc > li > ol {
+  counter-reset: toc-h3;
+  list-style: none;
+  padding-left: 2em;
+}
+
+#markdown-toc > li > ol > li {
+  counter-increment: toc-h3;
+  list-style: none;
+}
+
+#markdown-toc > li > ol > li::before {
+  content: counter(toc-h2) "." counter(toc-h3) " ";
+  font-weight: 600;
+}
+
+/* Appendix TOC - alphabetic numbering (A, B, B.1, etc.) */
+#appendix-toc {
+  counter-reset: appendix-item;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1em;
+}
+
+#appendix-toc > li {
+  counter-increment: appendix-item;
+  list-style: none;
+  margin-bottom: 0.5em;
+}
+
+#appendix-toc > li::before {
+  content: counter(appendix-item, upper-alpha) ". ";
+  font-weight: 600;
+}
+
+#appendix-toc > li > ul {
+  counter-reset: appendix-sub;
+  list-style: none;
+  padding-left: 2em;
+  margin-top: 0.25em;
+}
+
+#appendix-toc > li > ul > li {
+  counter-increment: appendix-sub;
+  list-style: none;
+  margin-bottom: 0.25em;
+}
+
+#appendix-toc > li > ul > li::before {
+  content: counter(appendix-item, upper-alpha) "." counter(appendix-sub) " ";
+  font-weight: 600;
+}
+
+/* ============================================
+   DATATABLES CUSTOMIZATION
+   ============================================ */
+
+/* DataTables wrapper spacing */
+.dataTables_wrapper {
+  margin: 0;
+}
+/* Search box styling */
+.dataTables_filter {
+  margin-bottom: 1em;
+}
+
+.dataTables_filter input {
+  border: 1px solid #e1e4e8;
+  padding: 0.5em;
+  border-radius: 4px;
+  margin-left: 0.5em;
+  font-size: 0.9em;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+.dataTables_filter input:focus {
+  outline: 2px solid var(--ncar-blue);
+  border-color: var(--ncar-blue);
+}
+
+/* Pagination styling */
+.dataTables_paginate {
+  margin-top: 1em;
+}
+
+.dataTables_paginate .paginate_button {
+  padding: 0.5em 0.75em;
+  margin: 0 0.25em;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+}
+
+.dataTables_paginate .paginate_button:hover {
+  background: #f6f8fa;
+  border-color: var(--ncar-blue);
+  color: var(--ncar-blue) !important;
+}
+
+.dataTables_paginate .paginate_button.current {
+  background: white !important;
+  color: var(--ncar-blue) !important;
+  border-color: var(--ncar-blue);
+}
+
+.dataTables_paginate .paginate_button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Info text styling */
+.dataTables_info {
+  margin-top: 1em;
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* Length menu (show X entries) */
+.dataTables_length select {
+  border: 1px solid #e1e4e8;
+  padding: 0.4em;
+  border-radius: 4px;
+  margin: 0 0.5em;
+  font-size: 0.9em;
+}
+
+.dataTables_length select:focus {
+  outline: 2px solid var(--ncar-blue);
+  border-color: var(--ncar-blue);
+}
+
+/* Sorting arrows */
+table.dataTable thead th {
+  cursor: pointer;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+  opacity: 0.7;
+  margin-left: 0.5em;
+}
+
+/* Remove DataTables default table borders that conflict with our styling */
+table.dataTable {
+  border-collapse: collapse !important;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+  border-bottom: none;
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+  padding: 0.75em;
+}
+
+/* Mobile responsiveness for DataTables controls */
+@media (max-width: 768px) {
+  .dataTables_filter,
+  .dataTables_length,
+  .dataTables_info,
+  .dataTables_paginate {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  .dataTables_filter input {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0.5em;
+  }
+
+  .dataTables_length select {
+    margin: 0.5em 0;
+  }
 }

@@ -1,1 +1,51 @@
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+<!-- jQuery (required for DataTables) -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+<script>
+// Initialize DataTables when page loads
+jQuery(document).ready(function($) {
+  // Global Attributes table - large table with pagination
+  if ($('#global-attributes-table').length) {
+    $('#global-attributes-table').DataTable({
+      pageLength: 25,
+      order: [[0, 'asc']], // Sort by attribute name
+      language: {
+        search: "Filter attributes:",
+        lengthMenu: "Show _MENU_ attributes per page",
+        info: "Showing _START_ to _END_ of _TOTAL_ attributes",
+        infoFiltered: "(filtered from _MAX_ total attributes)"
+      }
+    });
+  }
+
+  // Variable Attributes table - smaller, no pagination needed
+  if ($('#variable-attributes-table').length) {
+    $('#variable-attributes-table').DataTable({
+      paging: false,
+      info: false,
+      order: [[0, 'asc']],
+      language: {
+        search: "Filter attributes:"
+      }
+    });
+  }
+
+  // Probe tables - read-only reference, just enable sorting
+  if ($('.probe-table').length) {
+    $('.probe-table').DataTable({
+      paging: false,
+      searching: false,
+      info: false,
+      order: [[0, 'asc']]
+    });
+  }
+});
+</script>
