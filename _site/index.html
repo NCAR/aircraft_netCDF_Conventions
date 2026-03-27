@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="title" content="NCAR-RAF netCDF Conventions">
+  <meta name="description" content="UCAR">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta class="foundation-mq">
+  <link rel="canonical" href="https://www.ucar.edu/">
+  <link rel="shortcut icon" href="/aircraft_netCDF_Conventions/assets/koru-base/img/app-favicons/ncar/favicon.ico">
+
+  <title>NCAR-RAF netCDF Conventions | NCAR-RAF netCDF Conventions</title>
+
+  <link rel="stylesheet" href="/aircraft_netCDF_Conventions/assets/koru-base/lib/fontawesome/css/all.min.css" media="all">
+  <link rel="stylesheet" href="/aircraft_netCDF_Conventions/assets/koru-base/lib/icomoon/style.css" media="all">
+  <link rel="stylesheet" href="/aircraft_netCDF_Conventions/assets/koru-base/css/foundation.min.css" media="all">
+  <link rel="stylesheet" href="/aircraft_netCDF_Conventions/assets/koru-base/css/main.min.css" media="all">
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+  <!-- Site custom styles -->
+  <link rel="stylesheet" href="/aircraft_netCDF_Conventions/assets/css/custom.css" media="all">
+
+  <!-- Google Analytics -->
+  
+
+  <script>
+  // Build sticky H2 navbar
+  document.addEventListener('DOMContentLoaded', () => {
+    const navList = document.getElementById('h2-nav-list');
+    if (!navList) return;
+
+    const headings = document.querySelectorAll('.content h2');
+    const fragment = document.createDocumentFragment();
+
+    headings.forEach((heading) => {
+      if (heading.classList.contains('no_toc')) return;
+      const id = heading.getAttribute('id');
+      if (!id) return;
+
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = `#${id}`;
+      a.textContent = heading.textContent.trim();
+      li.appendChild(a);
+      fragment.appendChild(li);
+    });
+
+    if (fragment.childNodes.length === 0) {
+      navList.parentElement?.classList.add('is-empty');
+      return;
+    }
+
+    navList.appendChild(fragment);
+  });
+  </script>
+</head>
+
+
+<body class="ncar no-banner with-sidebar">
+<main class="content-wrapper" role="main">
+    <header role="banner">
+    <div data-sticky-container="" class="sticky-container">
+        <div data-sticky="" data-options="marginTop:0;stickyOn:small;" data-top-anchor="main-content"
+             class="sticky is-anchored is-at-top">
+            <div class="top-bar align-top hide-for-print" id="top-bar">
+                <div class="grid-x align-center">
+                    <div class="cell large-9">
+                        <div class="grid-x align-middle">
+                            <div class="cell small-3">
+                              <div class="acronym-wrapper">
+                                <a href="https://ncar.ucar.edu" title="NCAR Home">
+                                  <img src="/aircraft_netCDF_Conventions/assets/koru-base/img/logo-ncar.png"
+                                       alt="NCAR logo">
+                                  <span class="show-for-sr">NCAR</span>
+                                </a>
+                              </div>
+                            </div>
+                            <div class="cell small-6 top-bar-title align-center align-middle text-center">
+                                <div class="site-name"><a href="/">NCAR-RAF netCDF Conventions</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-nav hide-for-print text-center bg-blue" data-responsive-toggle="main-nav" data-hide-for="mlarge">
+                <div class="title-bar-title">Menu</div>
+                <button class="fa-solid fa-chevron-down" type="button" data-toggle="main-nav"></button>
+            </div>
+            <div class="main-nav hide-for-print" id="main-nav">
+                <div class="grid-x align-center bg-blue">
+                <nav class="cell center mlarge-10 large-9">
+                    <ul class="menu icons icon-left" data-responsive-menu="accordion mlarge-dropdown">
+                        
+                        <li aria-label="Conventions">
+                            <a class="text-center" href="/">Conventions</a>
+                            
+                        </li>
+                        
+                        <li aria-label="View on GitHub">
+                            <a class="text-center" href="https://github.com/NCAR/aircraft_netCDF_Conventions">View on GitHub</a>
+                            
+                        </li>
+                        
+                        <li aria-label="EOL Data Archive">
+                            <a class="text-center" href="https://www.eol.ucar.edu/data-software/eol-field-data-archive">EOL Data Archive</a>
+                            
+                        </li>
+                        
+                    </ul>
+                </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="body-content" id="main-content">
+        <section class="panel primary-content">
+        <div class="grid-x align-center">
+            <div class="cell medium-8 large-9">
+                <article role="article" class="content">
+                    <h1 class="no_toc" id="ncar-raf-netcdf-conventions">NCAR-RAF netCDF Conventions</h1>
+
+<h2 class="no_toc no_anchor" id="version-21">Version 2.1</h2>
+
+<hr />
+
+<h3 class="no_toc no_anchor" id="national-center-for-atmospheric-research">National Center for Atmospheric Research</h3>
+
+<h3 class="no_toc no_anchor" id="research-aviation-facility">Research Aviation Facility</h3>
+
+<h3 class="no_toc no_anchor" id="noaa-aoc">NOAA AOC</h3>
+
+<h3 class="no_toc no_anchor" id="university-of-wyoming-king-air">University of Wyoming (King Air)</h3>
+
+<hr />
+
+<h2 class="no_toc" id="table-of-contents">Table of Contents</h2>
+
+<ol id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a>    <ol>
+      <li><a href="#histogram-data" id="markdown-toc-histogram-data">Histogram data</a></li>
+      <li><a href="#multi-rate-files" id="markdown-toc-multi-rate-files">Multi-rate files</a></li>
+    </ol>
+  </li>
+  <li><a href="#changelog" id="markdown-toc-changelog">Changelog</a>    <ol>
+      <li><a href="#version-21-released-jan-2025" id="markdown-toc-version-21-released-jan-2025">Version 2.1 released Jan 2025</a></li>
+      <li><a href="#version-20-released-jun-2021" id="markdown-toc-version-20-released-jun-2021">Version 2.0 released Jun 2021</a></li>
+      <li><a href="#checking-file-version" id="markdown-toc-checking-file-version">Checking File Version</a></li>
+      <li><a href="#legacy-documentation" id="markdown-toc-legacy-documentation">Legacy Documentation</a></li>
+    </ol>
+  </li>
+  <li><a href="#netcdf-file-components" id="markdown-toc-netcdf-file-components">NetCDF File Components</a>    <ol>
+      <li><a href="#filenames" id="markdown-toc-filenames">Filenames</a></li>
+      <li><a href="#data-types" id="markdown-toc-data-types">Data types</a></li>
+      <li><a href="#naming-conventions" id="markdown-toc-naming-conventions">Naming conventions</a></li>
+      <li><a href="#dimensions" id="markdown-toc-dimensions">Dimensions</a></li>
+      <li><a href="#variables" id="markdown-toc-variables">Variables</a></li>
+      <li><a href="#attributes" id="markdown-toc-attributes">Attributes</a></li>
+    </ol>
+  </li>
+  <li><a href="#contact" id="markdown-toc-contact">Contact</a></li>
+</ol>
+
+<h2 class="no_toc" id="appendix">Appendix</h2>
+
+<ul id="appendix-toc">
+  <li><a href="#references">References</a></li>
+  <li>
+    <a href="#size-distribution-probes">Size-Distribution Probes</a>
+    <ul>
+      <li><a href="#variable-names">Variable names</a></li>
+      <li><a href="#cell-sizes">Cell sizes</a></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The goal is to support synchronous time series including the following properties:</p>
+
+<ul>
+  <li>Both scalar and histogram variables.</li>
+  <li>Different sample rates among variables</li>
+</ul>
+
+<p>RAF’s primary datasets consist of synchronous time series data. Data are written to the netCDF file one record per second, even for data at higher rates.</p>
+
+<h3 id="histogram-data">Histogram data</h3>
+
+<p>Instruments which measure particle size distributions produce histograms. These instruments include the suite of aerosol and cloud probes.</p>
+
+<h3 id="multi-rate-files">Multi-rate files</h3>
+
+<p>RAF’s standard data product is a netCDF file where all measurements are output at 1 sps. Certain projects require high-rate data. RAF has standardized at 25 sps for high-rate data. In general we don’t want to put out variables sampled at 1 sps at 25 sps, as there is no information in the data, and it would take up excess space.</p>
+
+<p>There is also an occasional need to look at data at the sample rate.</p>
+
+<p><img src="http://www.eol.ucar.edu/raf/Software/record.png" alt="netCDF record structure" /></p>
+
+<hr />
+
+<h2 id="changelog">Changelog</h2>
+
+<h3 id="version-21-released-jan-2025">Version 2.1 released Jan 2025</h3>
+
+<ul>
+  <li>Coordinate variables for size-distributions</li>
+  <li>Updated global attributes for data discovery and provenance.</li>
+</ul>
+
+<h3 id="version-20-released-jun-2021">Version 2.0 released Jun 2021</h3>
+
+<ul>
+  <li>The primary difference is in how size-distributions are stored. The legacy zeroth bin has been removed. Now a 30 channel probe will have 30 bins, where as previously it had 31, with the zeroth (or 1st, depending on your method of numbering) bin being a fixed zero.</li>
+</ul>
+
+<h3 id="checking-file-version">Checking File Version</h3>
+
+<p>Check the Conventions global attribute for version number. The “NCAR-RAF/nimbus” entry is what you want. ACDD is for data discovery.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ncdump <span class="nt">-h</span> CAESARrf01.nc | <span class="nb">grep </span>Conventions
+        :Conventions <span class="o">=</span> <span class="s2">"NCAR-RAF/nimbus-2.0,ACDD-1.3"</span> <span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="legacy-documentation">Legacy Documentation</h3>
+
+<p>For files produced prior to 2021, visit <strong><a href="https://archive.eol.ucar.edu/raf/Software/netCDF_1_3.html">RAF netCDF Conventions 1.3</a></strong>.</p>
+
+<hr />
+
+<h2 id="netcdf-file-components">NetCDF File Components</h2>
+
+<h3 id="filenames">Filenames</h3>
+
+<p>RAF uses a naming convention consisting of a project designator followed by the flight type, followed by a 2 digit flight number, followed by an indicator of sample rate ( ‘h’ to indicate high-rate data, low-rate data has no indicator), followed by “.nc”. Prior to about 2005/2006, field projects were designated with a 3 digit number. With the adoption of ADS-3 / nidas in 2005/2006, a switch was made to upper-case project names.</p>
+
+<p>For example, <code class="language-plaintext highlighter-rouge">PREDICTtf01.nc</code> would be low-rate data from <strong>t</strong>est <strong>f</strong>light 1 from the PREDICT project.
+<code class="language-plaintext highlighter-rouge">SPICULEff01s.nc</code> would be sample-rate data from <strong>f</strong>erry <strong>f</strong>light 1 from the SPICULE project.
+<code class="language-plaintext highlighter-rouge">RICOrf08h.nc</code> would be high-rate data from <strong>r</strong>esearch **flight 8 of the RICO project.</p>
+
+<p>Flight types used by RAF are <code class="language-plaintext highlighter-rouge">ff</code>, <code class="language-plaintext highlighter-rouge">tf</code>, and <code class="language-plaintext highlighter-rouge">rf</code>.</p>
+
+<h3 id="data-types">Data types</h3>
+
+<p>All our data are stored using single precision float.  This is not a requirement.  The modern netCDF APIs have functions that will return the data in whatever format you ask, regardless of how it is stored in the file.</p>
+
+<h3 id="naming-conventions">Naming conventions</h3>
+
+<p>Variable, dimension and attribute names should begin with a letter and be composed of letters, digits, and underscores.</p>
+
+<h4 id="variable-names">Variable names</h4>
+
+<p>The <strong>underscore</strong> has special meaning for variable names. Anything following an underscore is considered a suffix for grouping variables from the same instrument or probe. There is no standard for suffix names, but RAF regularly uses about a dozen specific ones for describing an instrument’s mounting location on the aircraft.  This allows for multiple identical probes, each must have a unique suffix.</p>
+
+<p>For example.
+  <code class="language-plaintext highlighter-rouge">AFSSP_RPO</code>,
+  <code class="language-plaintext highlighter-rouge">CFSSP_RPO</code>,
+  <code class="language-plaintext highlighter-rouge">PLWC_RPO</code>,
+  <code class="language-plaintext highlighter-rouge">CONCF_RPO</code>
+all belong to the same instrument. In our files RPO stands for “Right Pod Outboard”.</p>
+
+<h4 id="dimension-names">Dimension names</h4>
+
+<p>Dimension names we use are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Time</code> This is the UNLIMITED dimension for the number of rows or seconds in the file.</li>
+  <li><code class="language-plaintext highlighter-rouge">sps</code># for variable data rate (sps1, sps5, sps25, sps1000, etc.)</li>
+  <li><code class="language-plaintext highlighter-rouge">histogram</code># for histogram lengths (histogram16, histogram30, etc.)</li>
+  <li><code class="language-plaintext highlighter-rouge">bnds</code> size is 2, this for coordinate variable bounds.</li>
+  <li>Probe Serial Numbers from coordinate variables will be used (e.g. CDP016, UHSAS011, F2DS020).</li>
+</ul>
+
+<h3 id="dimensions">Dimensions</h3>
+
+<h4 id="first-dimension---time">First dimension - Time</h4>
+
+<p><code class="language-plaintext highlighter-rouge">Time</code> is the unlimited dimension, and most every variable has the <code class="language-plaintext highlighter-rouge">Time</code> dimension. No more than one record is to be written per second; all subsamples are to be contained in the record, though data averaged down slower than 1 sps may be written (e.g., when you have 1 sample every 10 seconds).</p>
+
+<h4 id="second-dimension---data-rate">Second dimension - data rate</h4>
+
+<p>The second dimension, if present, represents the number of samples per second (e.g. <code class="language-plaintext highlighter-rouge">sps25</code>). The size of this dimension will vary according to the output rate of the variable (e.g., RAF uses 1, 5, 10, 25, 50, 250, and 1000). If the dimension does not exist, then there is only one sample for the second.</p>
+
+<h4 id="third-dimension---histogram-length">Third dimension - histogram length</h4>
+
+<p>The third dimension, if present, signifies a histogram and is the length of the array. (This will be present only for array data).</p>
+
+<h3 id="variables">Variables</h3>
+
+<p><a href="http://www.cfconventions.org/">http://www.cfconventions.org/</a>.</p>
+
+<h4 id="time">Time</h4>
+
+<p>Time follows the recommendations set forth in the <a href="http://cfconventions.org/latest.html">CF conventions</a> section 4.4. This always has one dimension, the Time dimension. It is assumed that subsamples, dimension two in a variable, are evenly spaced. Data that are averaged down to 1hz, the timestamp is the mid-point of the second (i.e. it is the average of all the data that was acquired during that second).</p>
+
+<pre><code class="language-cdl">        int Time(Time) ;
+                Time:long_name = "time of measurement" ;
+                Time:standard_name = "time" ;
+                Time:units = "seconds since 2004-08-02 00:00:00 +0000" ;
+                Time:strptime_format = "seconds since %F %T %z" ;
+</code></pre>
+
+<p>RAF sets the <code class="language-plaintext highlighter-rouge">Time</code> units to midnight prior to take-off and then the values of Time are <em>seconds since midnight</em>. This helps with correlation of NASA Ames and ICARTT data formats.</p>
+
+<h4 id="missing-data">Missing data</h4>
+
+<p>At this time we use the _FillValue attribute.</p>
+
+<hr />
+
+<h3 id="attributes">Attributes</h3>
+
+<h4 id="global-attributes">Global attributes</h4>
+
+<p>Global attributes description. Blank descriptions can be found at the <a href="https://wiki.esipfed.org/Data_Discovery_(ACDD)">ESIP ACDD</a> web page.</p>
+
+<h5 id="data-discovery---source">Data Discovery - Source</h5>
+
+<table class="global-attributes-table">
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">program</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"NSF NCAR"</code></td>
+      <td>Program name</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">institution</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"National Center for Atmospheric Research"</code></td>
+      <td>Institution name</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Address</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"P.O. Box 3000, Boulder, CO 80307-3000"</code></td>
+      <td>Institution address</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Phone</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"(303) 497-1030"</code></td>
+      <td>Contact phone number</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">source</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"airborne observations"</code></td>
+      <td>Data source</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">creator_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"NCAR EOL - Research Aviation Facility"</code></td>
+      <td>Creator name</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">creator_email</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"raf-pm at ucar.edu"</code></td>
+      <td>Creator email</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">creator_url</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"https://www.eol.ucar.edu/who-we-are/eol-organization/research-aviation-facility-raf"</code></td>
+      <td>Creator URL</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">creator_type</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"group"</code></td>
+      <td>Creator type (person, group, institution)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">creator_group</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"NSF NCAR C130 Team"</code></td>
+      <td>Creator group name</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">publisher_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"UCAR NCAR - Earth Observing Laboratory"</code></td>
+      <td>Publisher name</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">publisher_url</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"https://www.eol.ucar.edu/data-software/eol-field-data-archive"</code></td>
+      <td>Publisher URL</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">publisher_email</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"datahelp at eol.ucar.edu"</code></td>
+      <td>Publisher email</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">publisher_type</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"group"</code></td>
+      <td>Publisher type</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="data-discovery---id">Data Discovery - ID</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DOI</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"https://doi.org/10.26023/44NW-3RPN-ZF0B"</code></td>
+      <td>Complete DOI name</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">naming_authority</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"org.doi"</code></td>
+      <td>Naming authority</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">id</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"10.26023/44NW-3RPN-ZF0B"</code></td>
+      <td>Unique identifier</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="data-discovery---file-format">Data Discovery - File Format</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Conventions</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"NCAR-RAF/nimbus-2.0,ACDD-1.3"</code></td>
+      <td>List of conventions used</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ConventionsURL</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"https://www.eol.ucar.edu/raf/Software/netCDF.html"</code></td>
+      <td>Conventions documentation URL</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">standard_name_vocabulary</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CF-1.11"</code></td>
+      <td>Standard name vocabulary</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="data-discovery---about-spatiotemporal">Data Discovery - About (Spatiotemporal)</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">date_created</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"2025-02-11T22:19:21 +0000"</code></td>
+      <td>File creation date</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">platform</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"N130AR"</code></td>
+      <td>Platform identifier</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">platform_type</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"aircraft"</code></td>
+      <td>Platform type</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">project</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CAESAR"</code></td>
+      <td>Project name</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FlightNumber</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"rf01"</code></td>
+      <td>Flight number</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FlightDate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"02/28/2024"</code></td>
+      <td>Flight date</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">time_coverage_start</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"2024-02-28T11:39:00 +0000"</code></td>
+      <td>Start time of data coverage</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">time_coverage_end</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"2024-02-28T18:36:44 +0000"</code></td>
+      <td>End time of data coverage</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">latitude_coordinate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"LATC"</code></td>
+      <td>Variable name of platform best latitude</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">longitude_coordinate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"LONC"</code></td>
+      <td>Variable name of platform best longitude</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">zaxis_coordinate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"GGALT"</code></td>
+      <td>Variable name of platform best altitude</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">time_coordinate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Time"</code></td>
+      <td>Variable name of the time variable</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geospatial_lat_min</code></td>
+      <td><code class="language-plaintext highlighter-rouge">67.73269f</code></td>
+      <td>Minimum latitude</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geospatial_lat_max</code></td>
+      <td><code class="language-plaintext highlighter-rouge">71.56526f</code></td>
+      <td>Maximum latitude</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geospatial_lon_min</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-17.13059f</code></td>
+      <td>Minimum longitude</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geospatial_lon_max</code></td>
+      <td><code class="language-plaintext highlighter-rouge">20.60835f</code></td>
+      <td>Maximum longitude</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geospatial_vertical_min</code></td>
+      <td><code class="language-plaintext highlighter-rouge">169.6806f</code></td>
+      <td>Minimum altitude (m)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geospatial_vertical_max</code></td>
+      <td><code class="language-plaintext highlighter-rouge">5996.425f</code></td>
+      <td>Maximum altitude (m)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geospatial_vertical_positive</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"up"</code></td>
+      <td>Vertical positive direction</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geospatial_vertical_units</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"m"</code></td>
+      <td>Vertical coordinate units</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">wind_field</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"WSC WDC WIX"</code></td>
+      <td>List of wind variables</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="provenance">Provenance</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ProcessorRepositoryURL</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"https://github.com/NCAR/nimbus"</code></td>
+      <td>Processor code repository</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ProcessorRepositoryBranch</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"master"</code></td>
+      <td>Repository branch</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ProcessorRepositoryRevision</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"v5.0-282"</code></td>
+      <td>Repository revision</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ProcessorRepositoryDate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Tue Feb 4 14:29:22 2025 -0700"</code></td>
+      <td>Repository commit date</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ProcessorRepositoryHASH</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"b8fbb30ae4e66cc67f05fc036e0e325808da26d4"</code></td>
+      <td>Repository commit hash</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ProcessorRepositoryDirt</code></td>
+      <td> </td>
+      <td>Lists processor source code files that were modified and not committed</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ProjectDirectoryRepoURL</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"git@github.com:NCAR/aircraft_projects.git"</code></td>
+      <td>Project configuration repository</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ProjectDirectoryRevision</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"894cf75dc2d4976e715de059206cccae1283398"</code></td>
+      <td>Project directory revision</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ProjectDirectoryDirt</code></td>
+      <td> </td>
+      <td>Lists files modified and not committed</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">NIDASrevision</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"v1.2.4"</code></td>
+      <td>NIDAS version for raw data decoding</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SizeDistributionLegacyZeroBin</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"no"</code></td>
+      <td>Legacy size distribution zero bin flag</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">InterpolationMethod</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Linear"</code></td>
+      <td>Interpolation method used</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="ancillary-information">Ancillary Information</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">landmarks</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"39.9088 -105.117 jeffco, 67.85572 20.22513 kiruna"</code></td>
+      <td>Comma-separated list of landmarks (lat lon label)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Categories</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Aerosol,Atmos. State,Chemistry,CloudAndPrecip,Housekeeping,NavAttitude,NavPosition,NavVelocity,Non-Standard,Radiation,Thermodynamic,Uncorrected Raw,Wind"</code></td>
+      <td>List of all possible variable categories</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="variable-attributes">Variable attributes</h4>
+
+<p>All variables contain the basic attributes <code class="language-plaintext highlighter-rouge">units</code>, <code class="language-plaintext highlighter-rouge">long_name</code>, and <code class="language-plaintext highlighter-rouge">_FillValue</code> (<code class="language-plaintext highlighter-rouge">missing_value</code> has been deprecated).</p>
+
+<p>Every variable will have either <code class="language-plaintext highlighter-rouge">SampledRate</code> or <code class="language-plaintext highlighter-rouge">Dependencies</code>. This is how you can determine if it is a raw vs. derived (calculated) variable.</p>
+
+<h5 id="all-variables">All Variables</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">units</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"degree"</code>, <code class="language-plaintext highlighter-rouge">"#/cm3"</code>, <code class="language-plaintext highlighter-rouge">"m/s"</code></td>
+      <td><strong>Required.</strong> Units of measurement</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">long_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"IRS Aircraft Pitch Angle"</code>, <code class="language-plaintext highlighter-rouge">"CDP Concentration (per cell)"</code></td>
+      <td><strong>Required.</strong> Description of the variable</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_FillValue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-32767.f</code></td>
+      <td><strong>Recommended.</strong> Missing value flag</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">actual_range</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-3.31724 15.88532f</code>, <code class="language-plaintext highlighter-rouge">0.f, 538.7375f</code></td>
+      <td>Recommended. Min/max values in file</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">standard_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"platform_pitch_angle"</code>, <code class="language-plaintext highlighter-rouge">"upward_air_velocity"</code></td>
+      <td>Optional. CF convention standard name</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DataQuality</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Preliminary"</code>, <code class="language-plaintext highlighter-rouge">"Good"</code></td>
+      <td>Optional. Quality assessment (Bad, Preliminary, Good)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Category</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"NavAttitude"</code>, <code class="language-plaintext highlighter-rouge">"CloudAndPrecip"</code>, <code class="language-plaintext highlighter-rouge">"Wind"</code></td>
+      <td>Optional. Variable category from CategoryList</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">valid_range</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-180.f, 180.f</code></td>
+      <td>Optional. Valid range of variable</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="raw-variables-sampled">Raw Variables (Sampled)</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SampledRate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">50</code>, <code class="language-plaintext highlighter-rouge">10</code></td>
+      <td><strong>Optional.</strong> Sample rate in samples per second (sps)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">TimeLag</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-180</code></td>
+      <td>Optional. Time lag in milliseconds (negative = correction)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">TimeLagUnits</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"milliseconds"</code></td>
+      <td>Optional. Units of TimeLag attribute</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CalibrationCoefficients</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.26f, 1.f</code></td>
+      <td>Optional. DC voltage to engineering units conversion (already applied)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DespikeSlope</code></td>
+      <td> </td>
+      <td>Optional. Max valid slope between consecutive samples</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SerialNumber</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP016"</code></td>
+      <td>Optional. Instrument serial number</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="derived-variables-calculated">Derived Variables (Calculated)</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Dependencies</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"2 ACDP_LWOO TASX"</code>, <code class="language-plaintext highlighter-rouge">"9 TASX VEWC VNSC PITCH ROLL THDG ATTACK SSLIP VSPD"</code></td>
+      <td><strong>Optional.</strong> Input variables used in calculation (count + variable names)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="special-attributes-for-size-distribution-probes">Special Attributes for Size-Distribution Probes</h5>
+
+<table id="probe-table">
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FirstBin</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td>Optional. First valid bin index (inclusive)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">LastBin</code></td>
+      <td><code class="language-plaintext highlighter-rouge">29</code></td>
+      <td>Optional. Last valid bin index (inclusive)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CellSizes</code></td>
+      <td><code class="language-plaintext highlighter-rouge">2.f, 3.f, 4.f, ...</code></td>
+      <td>Optional. Lower bin limits in micrometers</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CellSizeUnits</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"micrometers"</code></td>
+      <td>Optional. Units of CellSizes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CellSizeNote</code></td>
+      <td> </td>
+      <td>Optional. Notes about bin edges</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DepthOfField</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.2f</code></td>
+      <td>Optional. Probe depth of field</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">BeamDiameter</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.2f</code></td>
+      <td>Optional. Laser beam diameter</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Density</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.f</code></td>
+      <td>Optional. Particle density assumption</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PLWfactor</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.e-06f</code></td>
+      <td>Optional. Liquid water content conversion factor</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DBZfactor</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1000000.f</code></td>
+      <td>Optional. Radar reflectivity conversion factor</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="example-variable-data">Example Variable Data</h4>
+
+<h5 id="pitch-aircraft-pitch-angle---raw-variable">PITCH (Aircraft Pitch Angle) - Raw Variable</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Variable Type</td>
+      <td><code class="language-plaintext highlighter-rouge">float PITCH(Time)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_FillValue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-32767.f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">units</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"degree"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">long_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"IRS Aircraft Pitch Angle"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">standard_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"platform_pitch_angle"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">valid_range</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-180.f, 180.f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">actual_range</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-3.31724 15.88532f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Category</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"NavAttitude"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SampledRate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">50</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">TimeLag</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-180</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">TimeLagUnits</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"milliseconds"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DataQuality</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Preliminary"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CalibrationCoefficients</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.26f, 1.f</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="ccdp_lwoo-cdp-concentration---derived-variable">CCDP_LWOO (CDP Concentration) - Derived Variable</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Variable Type</td>
+      <td><code class="language-plaintext highlighter-rouge">float CCDP_LWOO(Time, sps1, CDP016)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_FillValue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-32767.f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">units</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"#/cm3"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">long_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP Concentration (per cell)"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">actual_range</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.f, 538.7375f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Category</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CloudAndPrecip"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SerialNumber</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP016"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DataQuality</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Preliminary"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Dependencies</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"2 ACDP_LWOO TASX"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FirstBin</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">LastBin</code></td>
+      <td><code class="language-plaintext highlighter-rouge">29</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CellSizes</code></td>
+      <td><code class="language-plaintext highlighter-rouge">2.f, 3.f, 4.f, 5.f, 6.f, 7.f, 8.f, 9.f, 10.f, 11.f, 12.f, 13.f, 14.f, 16.f, 18.f, 20.f, 22.f, 24.f, 26.f, 28.f, 30.f, 32.f, 34.f, 36.f, 38.f, 40.f, 42.f, 44.f, 46.f, 48.f, 50.f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CellSizeUnits</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"micrometers"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CellSizeNote</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CellSizes are lower bin limits as particle"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DepthOfField</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.2f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">BeamDiameter</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.2f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Density</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PLWfactor</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.e-06f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DBZfactor</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1000000.f</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="wic-wind-vector-vertical-component---derived-variable">WIC (Wind Vector, Vertical Component) - Derived Variable</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Variable Type</td>
+      <td><code class="language-plaintext highlighter-rouge">float WIC(Time, sps25)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_FillValue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-32767.f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">units</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"m/s"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">long_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"GPS-Corrected Wind Vector, Vertical Gust Component"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">standard_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"upward_air_velocity"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">actual_range</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-3.393437 5.762867f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Category</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Wind"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DataQuality</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Good"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Dependencies</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"9 TASX VEWC VNSC PITCH ROLL THDG ATTACK SSLIP VSPD"</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 class="no_toc" id="appendices">Appendices</h2>
+
+<h3 class="no_toc" id="references">References</h3>
+
+<p><a href="http://www.unidata.ucar.edu/software/netcdf/">NetCDF Software Package</a>, from the UNIDATA Program Center of the University Corporation for Atmospheric Research.</p>
+
+<p><a href="http://www.unidata.ucar.edu/software/udunits/">UDUNITS Software Package</a>, from the UNIDATA Program Center of the University Corporation for Atmospheric Research.</p>
+
+<p><a href="http://www.cfconventions.org/conventions.html">CF Conventions</a>, Climate Forcast data and meta-data conventions.</p>
+
+<p><a href="https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3">ACDD</a>, Attribute Conventions for Data Discovery</p>
+
+<hr />
+
+<h3 class="no_toc" id="size-distribution-probes">Size-Distribution Probes</h3>
+
+<p>Units for all size-distributions will always be #/vol. They will never be normalized (i.e. divided by bin width or log bin width).</p>
+
+<h4 class="no_toc" id="probe-variable-names">Probe variable names</h4>
+
+<p>Each PMS probe has two histograms stored in the netCDF file. First is the raw counts and this variable always starts with the letter ‘A’ (for “Actual”). Second is the size-distribution array which always starts with the letter ‘C’. Below you will see the variable names for the orginal PMS probe and for the DMT converted electronics.</p>
+
+<table class="variable-attributes-table">
+  <thead>
+    <tr>
+      <th>Probe</th>
+      <th># bins</th>
+      <th>Counts name</th>
+      <th>Concentration name</th>
+      <th>DMT Converted</th>
+      <th># bins</th>
+      <th>Counts name</th>
+      <th>Concentration name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FSSP</td>
+      <td>16</td>
+      <td>AFSSP_xxx</td>
+      <td>CFSSP_xxx</td>
+      <td>S100</td>
+      <td>30</td>
+      <td>AS100_xxx</td>
+      <td>CS100_xxx</td>
+    </tr>
+    <tr>
+      <td>PCASP</td>
+      <td>16</td>
+      <td>APCAS_xxx</td>
+      <td>CPCAS_xxx</td>
+      <td>S200</td>
+      <td>30</td>
+      <td>AS200_xxx</td>
+      <td>CS200_xxx</td>
+    </tr>
+    <tr>
+      <td>F300</td>
+      <td>32</td>
+      <td>AF300_xxx</td>
+      <td>CF300_xxx</td>
+      <td>S300</td>
+      <td>30</td>
+      <td>AS300_xxx</td>
+      <td>CS300_xxx</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>CDP</td>
+      <td>30</td>
+      <td>ACDP_xxx</td>
+      <td>CCDP_xxx</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>UHSAS</td>
+      <td>99</td>
+      <td>AUHSAS_xxx</td>
+      <td>CUHSAS_xxx</td>
+    </tr>
+    <tr>
+      <td>260X</td>
+      <td>64</td>
+      <td>A260X_xxx</td>
+      <td>C260X_xxx</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2D-C (entire-in algo)</td>
+      <td>32</td>
+      <td>A1DC_xxx</td>
+      <td>C1DC_xxx</td>
+      <td>Fast2DC</td>
+      <td>64</td>
+      <td>A1DC_xxx</td>
+      <td>C1DC_xxx</td>
+    </tr>
+    <tr>
+      <td>2D-C (center-in algo)</td>
+      <td>64</td>
+      <td>A2DC_xxx</td>
+      <td>C2DC_xxx</td>
+      <td>Fast2DC</td>
+      <td>128</td>
+      <td>A2DC_xxx</td>
+      <td>C2DC_xxx</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>SPEC probes are only processed through our OAP post-processing tool. This will produce two sets of data for each probe. One for round particles, and one for all particles. This processor uses center-in algorithm.</p>
+
+<table class="variable-attributes-table">
+  <thead>
+    <tr>
+      <th>SPEC Probe</th>
+      <th># bins</th>
+      <th>Type</th>
+      <th>Counts name</th>
+      <th>Size-distribution name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Fast2DS (vertical)</td>
+      <td>128</td>
+      <td>all</td>
+      <td>A2DSVA_xxx</td>
+      <td>C2DSVA_xxx</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>128</td>
+      <td>round</td>
+      <td>A2DSVR_xxx</td>
+      <td>C2DSVR_xxx</td>
+    </tr>
+    <tr>
+      <td>Fast2DS (horizontal)</td>
+      <td>128</td>
+      <td>all</td>
+      <td>A2DSHA_xxx</td>
+      <td>C2DSHA_xxx</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>128</td>
+      <td>round</td>
+      <td>A2DSHR_xxx</td>
+      <td>C2DSHR_xxx</td>
+    </tr>
+    <tr>
+      <td>HVPS</td>
+      <td>128</td>
+      <td>all</td>
+      <td>A2DHA_xxx</td>
+      <td>C2DH_xxx</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>128</td>
+      <td>round</td>
+      <td>A2DHR_xxx</td>
+      <td>C2DHR_xxx</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>The _xxx is any number of alpha-numeric characters uniquely identifying the probe in this dataset. This allows for multiple identical probes to exist in the same file.</li>
+  <li>Two sets of arrays are produced for each 2D probe. The 1DC pair is produced from the 2D probe data using an “entire-in” algorithm. The 2DC pair is produced using a “center-in” algorithm (see our 2D processing document for further information).</li>
+</ul>
+
+<h4 class="no_toc" id="cell-sizes">Cell sizes</h4>
+
+<p>Cell sizes (aka bin edges) are stored as an attribute of the size-distribution array. They are <strong>lower bin limits</strong>. These are diameters. The first cell size is the lower bin limit for the first bin of data. Also note the attributes <strong>FirstBin</strong> and <strong>LastBin</strong>, these should be used to determine which bins are considered valid, both are inclusive.</p>
+
+<p>e.g. The bin limits for CCDP[n] are CellSizes[n] and CellSizes[n+1], lower and upper respectivily.</p>
+
+<p>In the examples below, there are 31 cell sizes to go with the 30 used values of the size-distribution for the current value. Older version of RAF netCDF files (pre 2022) have a “legacy zeroth bin” in the histogram. Old PMS probes had a rotating housekeeping value in the first bin, and we wanted to preserve the raw data, and have a one-to-one correspondance between the counts array and the size-distribution array.</p>
+
+<h5 class="no_toc" id="acdp_lwoo-cdp-raw-accumulation---per-cell">ACDP_LWOO (CDP Raw Accumulation - per cell)</h5>
+
+<table class="probe_table">
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value (Current)</th>
+      <th>Legacy Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Variable Type</td>
+      <td><code class="language-plaintext highlighter-rouge">float ACDP_LWOO(Time, sps1, Vector30)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">float ACDP_LWOO(Time, sps1, Vector31)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_FillValue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-32767.f</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-32767.f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">units</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"count"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"count"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">long_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP Raw Accumulation (per cell)"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP Raw Accumulation (per cell)"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">actual_range</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.f, 8328.f</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.f, 8328.f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Category</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CloudAndPrecip"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"PMS Probe"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SerialNumber</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP016"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP016"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SampledRate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">10</code></td>
+      <td><code class="language-plaintext highlighter-rouge">10</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DataQuality</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Preliminary"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Preliminary"</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="ccdp_lwoo-cdp-concentration---per-cell">CCDP_LWOO (CDP Concentration - per cell)</h5>
+
+<table class="probe_table">
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value (Current)</th>
+      <th>Legacy Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Variable Type</td>
+      <td><code class="language-plaintext highlighter-rouge">float CCDP_LWOO(Time, sps1, Vector30)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">float CCDP_LWOO(Time, sps1, Vector31)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_FillValue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-32767.f</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-32767.f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">units</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"#/cm3"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"#/cm3"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">long_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP Concentration (per cell)"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP Concentration (per cell)"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">actual_range</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.f, 273.5868f</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.f, 273.5868f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Category</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CloudAndPrecip"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"PMS Probe"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SerialNumber</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP016"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP016"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DataQuality</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Preliminary"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Preliminary"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Dependencies</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"2 ACDP_LWOO TASX"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"2 ACDP_LWOO TASX"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FirstBin</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">LastBin</code></td>
+      <td><code class="language-plaintext highlighter-rouge">29</code></td>
+      <td><code class="language-plaintext highlighter-rouge">30</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CellSizes</code></td>
+      <td><code class="language-plaintext highlighter-rouge">2.12f, 3.14f, 4.16f, 5.18f, 6.2f, 7.22f, 8.24f, 9.26f, 10.29f, 11.31f, 12.33f, 13.35f, 14.37f, 16.41f, 18.46f, 20.5f, 22.54f, 24.58f, 26.63f, 28.67f, 30.71f, 32.75f, 34.8f, 36.84f, 38.88f, 40.92f, 42.97f, 45.01f, 47.05f, 49.1f, 51.14f</code></td>
+      <td><code class="language-plaintext highlighter-rouge">2.12f, 3.14f, 4.16f, 5.18f, 6.2f, 7.22f, 8.24f, 9.26f, 10.29f, 11.31f, 12.33f, 13.35f, 14.37f, 16.41f, 18.46f, 20.5f, 22.54f, 24.58f, 26.63f, 28.67f, 30.71f, 32.75f, 34.8f, 36.84f, 38.88f, 40.92f, 42.97f, 45.01f, 47.05f, 49.1f, 51.14f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CellSizeUnits</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"micrometers"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"micrometers"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CellSizeNote</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CellSizes are lower bin limits as particle"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CellSizes are upper bin limits as particle"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HistogramNote</code></td>
+      <td>(not present)</td>
+      <td><code class="language-plaintext highlighter-rouge">"Zeroth data bin is an unused legacy placeholder."</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DepthOfField</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.2f</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.2f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">BeamDiameter</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.2f</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.2f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Density</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.f</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PLWfactor</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.e-06f</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.e-06f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DBZfactor</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1000000.f</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1000000.f</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="concd_lwoo-cdp-concentration---all-cells">CONCD_LWOO (CDP Concentration - all cells)</h5>
+
+<table class="probe_table">
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value (Current)</th>
+      <th>Legacy Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Variable Type</td>
+      <td><code class="language-plaintext highlighter-rouge">float CONCD_LWOO(Time)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">float CONCD_LWOO(Time)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_FillValue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-32767.f</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-32767.f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">units</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"#/cm3"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"#/cm3"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">long_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP Concentration (all cells)"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP Concentration (all cells)"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">actual_range</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.f, 963.0727f</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.f, 963.0727f</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Category</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CloudAndPrecip"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"PMS Probe"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SerialNumber</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP016"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"CDP016"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DataQuality</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Preliminary"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"Preliminary"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Dependencies</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"1 CCDP_LWOO"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"1 CCDP_LWOO"</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="key-differences-between-versions">Key Differences Between Versions</h5>
+
+<table class="probe_table">
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Vector dimension</strong></td>
+      <td>Changed from Vector31 (31 bins) to Vector30 (30 bins)</td>
+    </tr>
+    <tr>
+      <td><strong>FirstBin</strong></td>
+      <td>Changed from 1 to 0</td>
+    </tr>
+    <tr>
+      <td><strong>LastBin</strong></td>
+      <td>Changed from 30 to 29</td>
+    </tr>
+    <tr>
+      <td><strong>Category</strong></td>
+      <td>Changed from “PMS Probe” to “CloudAndPrecip”</td>
+    </tr>
+    <tr>
+      <td><strong>CellSizeNote</strong></td>
+      <td>Changed from “upper bin limits” to “lower bin limits”</td>
+    </tr>
+    <tr>
+      <td><strong>HistogramNote</strong></td>
+      <td>Removed entirely</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>FirstBin is typically set to two or three for OAP probes as we find the data to be questionable at the smaller sizes.</p>
+
+<hr />
+
+<h2 id="contact">Contact</h2>
+
+<div style="background-color: #f5f7fa; border-left: 4px solid #3860B0; padding: 1.5rem; margin: 2rem 0; border-radius: 4px;">
+
+  <p><strong>For further information, please contact:</strong></p>
+
+  <p><strong>Chris Webster</strong><br />
+National Center for Atmospheric Research<br />
+Research Aviation Facility</p>
+
+  <p>📞 <a href="tel:+13034971044">(303) 497-1044</a><br />
+✉️ <a href="mailto:cjw@ucar.edu?Subject=RAF%20netCDF%20Conventions%20Inquiry">cjw@ucar.edu</a></p>
+
+</div>
+
+<hr />
+
+                </article>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <footer role="contentinfo">
+    <div class="grid-x grid-padding-y footer-menu-tertiary">
+        <div class="cell text-center">
+            <small>©  UCAR</small>
+            <ul class="menu vertical">
+              <li><a href="https://www.ucar.edu/web-accessibility">Web Accessibility</a></li>
+              <li><a href="https://www.ucar.edu/cookie-other-tracking-technologies-notice">Cookies</a></li>
+              <li><a href="https://www.ucar.edu/notification-copyright-infringement-digital-millenium-copyright-act">Copyright Issues</a></li>
+              <li><a href="https://www.ucar.edu/who-we-are/ethics-integrity/nondiscrimination">Nondiscrimination</a></li>
+              <li><a href="https://www.ucar.edu/privacy-notice">Privacy</a></li>
+              <li><a href="https://www.ucar.edu/terms-of-use">Terms of Use</a></li>
+              <li><a href="https://ncar.ucar.edu">NSF NCAR Home</a></li>
+              <li><a href="https://www.ucar.edu">UCAR Home</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="grid-x grid-padding-y footer-sponsor">
+        <div class="cell">
+            <div class="grid-container">
+                <div class="grid-x">
+                  <div class="cell small-3 medium-2 mlarge-1 logo">
+                    <a href="https://www.nsf.gov/" target="_blank"><img src="/aircraft_netCDF_Conventions/assets/koru-base/img/NSF_Official_logo.png" alt="National Science Foundation"></a>
+                  </div>
+                    <div class="cell small-auto medium-10 description">
+                        <p>This material is based upon work supported by the NSF National Center for Atmospheric Research, a major facility sponsored by the U.S. National Science Foundation and managed by the University Corporation for Atmospheric Research. Any opinions, findings and conclusions or recommendations expressed in this material do not necessarily reflect the views of the National Science Foundation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</main>
+</body>
+
+<script src="/aircraft_netCDF_Conventions/assets/koru-base/lib/jquery/dist/jquery.js"></script>
+<script src="/aircraft_netCDF_Conventions/assets/koru-base/lib/foundation-sites/dist/js/foundation.js"></script>
+<script src="/aircraft_netCDF_Conventions/assets/koru-base/js/main.min.js"></script>
+
+<!-- DataTables JS (after jQuery) -->
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script>
+jQuery(document).ready(function($) {
+  // Global Attributes table - large table with pagination
+  if ($('#global-attributes-table').length) {
+    $('#global-attributes-table').DataTable({
+      pageLength: 25,
+      order: [[0, 'asc']],
+      language: {
+        search: "Filter attributes:",
+        lengthMenu: "Show _MENU_ attributes per page",
+        info: "Showing _START_ to _END_ of _TOTAL_ attributes",
+        infoFiltered: "(filtered from _MAX_ total attributes)"
+      }
+    });
+  }
+
+  // Variable Attributes table - smaller, no pagination needed
+  if ($('#variable-attributes-table').length) {
+    $('#variable-attributes-table').DataTable({
+      paging: false,
+      info: false,
+      order: [[0, 'asc']],
+      language: {
+        search: "Filter attributes:"
+      }
+    });
+  }
+
+  // Probe tables - read-only reference, just enable sorting
+  if ($('.probe-table').length) {
+    $('.probe-table').DataTable({
+      paging: false,
+      searching: false,
+      info: false,
+      order: [[0, 'asc']]
+    });
+  }
+});
+</script>
+
+</html>

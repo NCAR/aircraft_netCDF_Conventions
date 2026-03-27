@@ -1,0 +1,64 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="title" content="{{ page.title }}">
+  <meta name="description" content="UCAR">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta class="foundation-mq">
+  <link rel="canonical" href="https://www.ucar.edu/">
+  <link rel="shortcut icon" href="{{ site.github.baseurl }}{{ 'assets/koru-base/img/app-favicons/ncar/favicon.ico' | relative_url }}">
+
+  <title>{{ page.title }} | {{ site.title }}</title>
+
+  <link rel="stylesheet" href="{{ site.github.baseurl }}{{ 'assets/koru-base/lib/fontawesome/css/all.min.css' | relative_url }}" media="all">
+  <link rel="stylesheet" href="{{ site.github.baseurl }}{{ 'assets/koru-base/lib/icomoon/style.css' | relative_url }}" media="all">
+  <link rel="stylesheet" href="{{ site.github.baseurl }}{{ 'assets/koru-base/css/foundation.min.css' | relative_url }}" media="all">
+  <link rel="stylesheet" href="{{ site.github.baseurl }}{{ 'assets/koru-base/css/main.min.css' | relative_url }}" media="all">
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+  <!-- Site custom styles -->
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}" media="all">
+
+  <!-- Google Analytics -->
+  {% if site.analytics %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site.analytics }}');
+  </script>
+  {% endif %}
+
+  <script>
+  // Build sticky H2 navbar
+  document.addEventListener('DOMContentLoaded', () => {
+    const navList = document.getElementById('h2-nav-list');
+    if (!navList) return;
+
+    const headings = document.querySelectorAll('.content h2');
+    const fragment = document.createDocumentFragment();
+
+    headings.forEach((heading) => {
+      if (heading.classList.contains('no_toc')) return;
+      const id = heading.getAttribute('id');
+      if (!id) return;
+
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = `#${id}`;
+      a.textContent = heading.textContent.trim();
+      li.appendChild(a);
+      fragment.appendChild(li);
+    });
+
+    if (fragment.childNodes.length === 0) {
+      navList.parentElement?.classList.add('is-empty');
+      return;
+    }
+
+    navList.appendChild(fragment);
+  });
+  </script>
+</head>

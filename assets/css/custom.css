@@ -7,15 +7,6 @@
   --ncar-navy: #386090;
 }
 
-/* Site Title */
-.site-title {
-  color: var(--ncar-blue) !important;
-}
-
-.site-title:hover {
-  color: var(--ncar-navy) !important;
-}
-
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   color: var(--ncar-blue) !important;
@@ -23,52 +14,63 @@ h1, h2, h3, h4, h5, h6 {
 h4 {
   font-size: 1rem !important;
 }
+
+/* Sticky H2 section headers */
+.content h2 {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--body-background-color, #ffffff);
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  scroll-margin-top: 0.5rem;
+}
 /* ============================================
    AUTOMATIC SECTION NUMBERING
    ============================================ */
 
 /* Initialize counters at the main content level */
-.main-content ul > li::before {
+.content ul > li::before {
     position: relative !important;
 }
 
-.main-content {
+.content {
   counter-reset: h2-counter;
 }
 
 /* H2 counter - main sections */
-.main-content h2 {
+.content h2 {
   counter-reset: h3-counter;
 }
 
-.main-content h2::before {
+.content h2::before {
   counter-increment: h2-counter;
   content: counter(h2-counter) ". ";
   margin-right: 0.5em;
 }
 
 /* H3 counter - subsections */
-.main-content h3 {
+.content h3 {
   counter-reset: h4-counter;
 }
 
-.main-content h3::before {
+.content h3::before {
   counter-increment: h3-counter;
   content: counter(h2-counter) "." counter(h3-counter) " ";
   margin-right: 0.5em;
 }
 
 /* H4 counter - sub-subsections */
-.main-content h4::before {
+.content h4::before {
   counter-increment: h4-counter;
   content: counter(h2-counter) "." counter(h3-counter) "." counter(h4-counter) " ";
   margin-right: 0.5em;
 }
 
 /* Exclude headings before Introduction from numbering */
-.main-content h2:first-of-type::before,
-.main-content h1 + h3::before,
-.main-content h1 + * + h3::before {
+.content h2:first-of-type::before,
+.content h1 + h3::before,
+.content h1 + * + h3::before {
   content: none;
   counter-increment: none;
 }
@@ -369,25 +371,6 @@ div.example {
   background-color: #ffeef0;
 }
 
-/* Footer customization */
-.site-footer {
-  color: #666;
-  font-size: 0.9em;
-}
-
-/* Hide sidebar completely */
-.side-bar {
-  display: none !important;
-}
-
-/* Make main content full width without sidebar */
-@media (min-width: 50rem) {
-  .main {
-    margin-left: 0 !important;
-    max-width: none !important;
-  }
-}
-
 /* Persistent back-to-top button */
 .back-to-top {
   position: fixed;
@@ -419,15 +402,6 @@ div.example {
 .back-to-top:focus {
   outline: 2px solid var(--ncar-blue);
   outline-offset: 2px;
-}
-
-/* Center main content for better readability */
-@media (min-width: 50rem) {
-  .main-content-wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
 }
 
 /* Smooth scroll behavior */

@@ -1,7 +1,6 @@
 ---
 layout: default
 title: NCAR-RAF netCDF Conventions
-nav_order: 1
 description: "NCAR-RAF netCDF Conventions for airborne atmospheric research data - Version 2.1"
 permalink: /
 ---
@@ -270,7 +269,6 @@ Global attributes description. Blank descriptions can be found at the [ESIP ACDD
 |-----------|---------|-------------|
 | `landmarks` | `"39.9088 -105.117 jeffco, 67.85572 20.22513 kiruna"` | Comma-separated list of landmarks (lat lon label) |
 | `Categories` | `"Aerosol,Atmos. State,Chemistry,CloudAndPrecip,Housekeeping,NavAttitude,NavPosition,NavVelocity,Non-Standard,Radiation,Thermodynamic,Uncorrected Raw,Wind"` | List of all possible variable categories |
-{: #global-attributes-table}
 
 #### Variable attributes
 

@@ -5,49 +5,10 @@ description: >-
   NSF NCAR Research Aviation Facility and partners.
 baseurl: "/aircraft_netCDF_Conventions"
 url: "https://ncar.github.io"
+analytics:
 
 # Theme
-# theme: just-the-docs #Use for local testing
-remote_theme: just-the-docs/just-the-docs@v0.10.0
-
-# Just the Docs configuration
-search_enabled: true
-search:
-  # Split pages into sections that can be searched individually
-  # Supports 1 - 6, default: 2
-  # Set to 3 to exclude H4 and below from search
-  heading_level: 3
-  # Maximum amount of previews per search result
-  # Default: 3
-  previews: 3
-  preview_words_before: 5
-  preview_words_after: 10
-  button: false
-
-# Enable collapsible navigation in sidebar
-nav_fold: true
-
-# Navigation
-aux_links:
-  "View on GitHub":
-    - "https://github.com/NCAR/aircraft_netCDF_Conventions"
-  "EOL Data Archive":
-    - "https://www.eol.ucar.edu/data-software/eol-field-data-archive"
-
-aux_links_new_tab: true
-
-# Back to top link
-back_to_top: true
-back_to_top_text: "Back to top"
-
-# Enable TOC on the right side for single-page documentation
-# This will display a table of contents based on page headings
-nav_external_links: []
-
-# Footer
-footer_content: >-
-  &copy; 2025 NSF NCAR Research Aviation Facility.
-  <a href="https://www.eol.ucar.edu">Earth Observation Lab</a>
+remote_theme: ncar/koru-jekyll@1.1.0
 
 # Code highlighting
 kramdown:
@@ -60,7 +21,9 @@ kramdown:
 
 # Plugins
 plugins:
-  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-remote-theme
+  - jekyll-sitemap
 
 # SEO settings
 tagline: Version 2.1 - File format conventions for airborne atmospheric research

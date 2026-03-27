@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include head.html %}
+
+<body class="ncar no-banner with-sidebar">
+<main class="content-wrapper" role="main">
+    {% include header.html %}
+
+    <div class="body-content" id="main-content">
+        {% include content.html %}
+    </div>
+
+    {% include footer.html %}
+</main>
+</body>
+
+<script src="{{ site.github.baseurl }}{{ 'assets/koru-base/lib/jquery/dist/jquery.js' | relative_url }}"></script>
+<script src="{{ site.github.baseurl }}{{ 'assets/koru-base/lib/foundation-sites/dist/js/foundation.js' | relative_url }}"></script>
+<script src="{{ site.github.baseurl }}{{ 'assets/koru-base/js/main.min.js' | relative_url }}"></script>
+
+<!-- DataTables JS (after jQuery) -->
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script>
+jQuery(document).ready(function($) {
+  // Global Attributes table - large table with pagination
+  if ($('#global-attributes-table').length) {
+    $('#global-attributes-table').DataTable({
+      pageLength: 25,
+      order: [[0, 'asc']],
+      language: {
+        search: "Filter attributes:",
+        lengthMenu: "Show _MENU_ attributes per page",
+        info: "Showing _START_ to _END_ of _TOTAL_ attributes",
+        infoFiltered: "(filtered from _MAX_ total attributes)"
+      }
+    });
+  }
+
+  // Variable Attributes table - smaller, no pagination needed
+  if ($('#variable-attributes-table').length) {
+    $('#variable-attributes-table').DataTable({
+      paging: false,
+      info: false,
+      order: [[0, 'asc']],
+      language: {
+        search: "Filter attributes:"
+      }
+    });
+  }
+
+  // Probe tables - read-only reference, just enable sorting
+  if ($('.probe-table').length) {
+    $('.probe-table').DataTable({
+      paging: false,
+      searching: false,
+      info: false,
+      order: [[0, 'asc']]
+    });
+  }
+});
+</script>
+
+</html>
