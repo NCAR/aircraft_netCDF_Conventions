@@ -1598,6 +1598,18 @@ Research Aviation Facility</p>
 <script src="/aircraft_netCDF_Conventions/assets/koru-base/lib/jquery/dist/jquery.js"></script>
 <script src="/aircraft_netCDF_Conventions/assets/koru-base/lib/foundation-sites/dist/js/foundation.js"></script>
 <script src="/aircraft_netCDF_Conventions/assets/koru-base/js/main.min.js"></script>
+<script>
+(function setHeaderHeight() {
+  function update() {
+    var h = document.querySelector('.sticky-container');
+    if (h) {
+      document.documentElement.style.setProperty('--header-height', h.offsetHeight + 'px');
+    }
+  }
+  update();
+  window.addEventListener('resize', update);
+})();
+</script>
 
 <!-- DataTables JS (after jQuery) -->
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>

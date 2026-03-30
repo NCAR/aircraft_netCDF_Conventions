@@ -15,12 +15,12 @@ h4 {
 /* Sticky H2 section headers */
 .content h2 {
   position: sticky;
-  top: 0;
+  top: var(--header-height, 100px);
   z-index: 2;
   background: var(--body-background-color, #ffffff);
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  scroll-margin-top: 0.5rem;
+  scroll-margin-top: var(--header-height, 100px);
 }
 /* ============================================
    AUTOMATIC SECTION NUMBERING
@@ -178,7 +178,7 @@ table thead {
   background-color: var(--ncar-blue) !important;
   color: white !important;
   position: sticky;
-  top: 0;
+  top: var(--header-height, 100px);
   z-index: 10;
 }
 

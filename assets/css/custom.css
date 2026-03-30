@@ -18,12 +18,12 @@ h4 {
 /* Sticky H2 section headers */
 .content h2 {
   position: sticky;
-  top: 0;
+  top: var(--header-height, 100px);
   z-index: 2;
   background: var(--body-background-color, #ffffff);
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  scroll-margin-top: 0.5rem;
+  scroll-margin-top: var(--header-height, 100px);
 }
 /* ============================================
    AUTOMATIC SECTION NUMBERING
@@ -181,7 +181,7 @@ table thead {
   background-color: var(--ncar-blue) !important;
   color: white !important;
   position: sticky;
-  top: 0;
+  top: var(--header-height, 100px);
   z-index: 10;
 }
 
@@ -218,14 +218,15 @@ tbody tr:last-of-type th, tbody tr:last-of-type td {
   border-bottom: none;
 }
 
-/* Code in tables (for attribute names) */
+/* Code in tables - plain text, no code formatting */
 table code {
-  background-color: #f6f8fa;
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  font-size: 0.9em;
-  color: #d73a49;
-  font-weight: 500;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+  color: inherit;
+  font-weight: inherit;
+  font-family: inherit;
 }
 
 /* Responsive tables */
