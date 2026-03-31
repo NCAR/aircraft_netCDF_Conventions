@@ -12,12 +12,17 @@ h4 {
   font-size: 1rem !important;
 }
 
+/* Ensure koru sticky header always paints above page content */
+header .sticky,
+header .sticky.is-stuck {
+  z-index: 200 !important;
+}
+
 /* Sticky H2 section headers */
 .content h2 {
   position: sticky;
   top: var(--header-height, 100px);
   z-index: 2;
-  background: var(--body-background-color, #ffffff);
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   scroll-margin-top: var(--header-height, 100px);
