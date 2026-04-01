@@ -1,8 +1,13 @@
 source "https://rubygems.org"
 
 gem "jekyll", "~> 4.3"
-gem "just-the-docs", "0.10.0"
-gem "jekyll-seo-tag"
+gem "webrick"
+
+group :jekyll_plugins do
+  gem "jekyll-feed", "~> 0.17"
+  gem "jekyll-remote-theme", ">= 0.4.3"
+  gem "jekyll-sitemap", "~> 1.4"
+end
 
 platforms :mingw, :x64_mingw, :mswin, :jruby do
   gem "tzinfo", ">= 1", "< 3"
